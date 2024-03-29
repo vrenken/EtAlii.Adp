@@ -6,3 +6,4 @@ namespace EtAlii.Adp.Data;
 public class ApplicationUser : IdentityUser
 {
 }
+
