@@ -2,12 +2,18 @@
 @rendermode InteractiveAuto
 @using Syncfusion.Blazor.Diagram;
 
-<SfDiagramComponent 
-    @ref="@_diagram" 
-    Connectors="@_connectors" 
-    Nodes="@_nodes" 
-    Height="100%" 
-    Width="100%" />
+<SfDiagramComponent
+    @ref="@_diagram"
+    Connectors="@_connectors"
+    Nodes="@_nodes"
+    Height="100%"
+    Width="100%">
+    <ScrollSettings EnableAutoScroll=true ScrollLimit="ScrollLimitMode.Infinity" />
+    <SnapSettings Constraints="SnapConstraints.All">
+       <HorizontalGridLines LineColor="#EFEFEFC5" />
+       <VerticalGridLines LineColor="#EFEFEFC5" />
+    </SnapSettings>
+</SfDiagramComponent>
 
 <style> 
     html, body { 
