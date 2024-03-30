@@ -42,7 +42,7 @@ public partial class EnableAuthenticator
 
         await UserManager.SetTwoFactorEnabledAsync(_user, true);
         var userId = await UserManager.GetUserIdAsync(_user);
-        Logger.LogInformation("User with ID '{UserId}' has enabled 2FA with an authenticator app.", userId);
+        Logger.LogInformation("User with ID '{UserId}' has enabled 2FA with an authenticator app", userId);
 
         _message = "Your authenticator app has been verified.";
 
@@ -75,7 +75,7 @@ public partial class EnableAuthenticator
     private string FormatKey(string unformattedKey)
     {
         var result = new StringBuilder();
-        int currentPosition = 0;
+        var currentPosition = 0;
         while (currentPosition + 4 < unformattedKey.Length)
         {
             result.Append(unformattedKey.AsSpan(currentPosition, 4)).Append(' ');

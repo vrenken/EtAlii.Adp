@@ -1,0 +1,16 @@
+﻿@page "/"
+@rendermode InteractiveAuto
+@using Syncfusion.Blazor.Diagram;
+
+<SfDiagramComponent 
+    @ref="@_diagram" 
+    Connectors="@_connectors" 
+    Nodes="@_nodes" 
+    Height="100%" 
+    Width="100%" />
+
+<style> 
+    html, body { 
+       height:100%; 
+    } 
+</style> 

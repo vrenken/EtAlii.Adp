@@ -11,8 +11,10 @@ public partial class Login
 
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
 
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -33,7 +35,7 @@ public partial class Login
                 lockoutOnFailure: false);
         if (result.Succeeded)
         {
-            Logger.LogInformation("User logged in.");
+            Logger.LogInformation("User logged in");
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.RequiresTwoFactor)
@@ -44,7 +46,7 @@ public partial class Login
         }
         else if (result.IsLockedOut)
         {
-            Logger.LogWarning("User account locked out.");
+            Logger.LogWarning("User account locked out");
             RedirectManager.RedirectTo("Account/Lockout");
         }
         else

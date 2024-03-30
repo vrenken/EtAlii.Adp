@@ -10,10 +10,13 @@ public partial class ConfirmEmailChange
 
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? UserId { get; set; }
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? Email { get; set; }
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? Code { get; set; }
 
     protected override async Task OnInitializedAsync()

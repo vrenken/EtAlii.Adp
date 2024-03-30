@@ -15,6 +15,7 @@ public partial class Register
 
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
     private string? Message => _identityErrors is null
@@ -36,7 +37,7 @@ public partial class Register
             return;
         }
 
-        Logger.LogInformation("User created a new account with password.");
+        Logger.LogInformation("User created a new account with password");
 
         var userId = await UserManager.GetUserIdAsync(user);
         var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);

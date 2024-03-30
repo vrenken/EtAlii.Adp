@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using EtAlii.Adp.Components;
 using EtAlii.Adp.Components.Account;
 using EtAlii.Adp.Data;
+using Syncfusion.Blazor;
+using Syncfusion.Licensing;
+
+SyncfusionLicenseProvider.RegisterLicense("MzE5MzAwOEAzMjM1MmUzMDJlMzBvWjc1OHlQWjNkYXB4cm9BUlFSL013SkZwMkE4SGx5ZXFVSVhpSGN2eTRzPQ==");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddSyncfusionBlazor();
 
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();

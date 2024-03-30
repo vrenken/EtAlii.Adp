@@ -19,6 +19,7 @@ public partial class ExternalLogins
 
     [SupplyParameterFromForm] private string? ProviderKey { get; set; }
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? Action { get; set; }
 
     protected override async Task OnInitializedAsync()

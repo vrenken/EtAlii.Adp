@@ -22,10 +22,12 @@
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.TwoFactorCode" class="form-control" autocomplete="off" />
+                @* ReSharper disable once Html.IdNotResolved *@
                 <label for="two-factor-code" class="form-label">Authenticator code</label>
                 <ValidationMessage For="() => Input.TwoFactorCode" class="text-danger" />
             </div>
             <div class="checkbox mb-3">
+                @* ReSharper disable once Html.IdNotResolved *@
                 <label for="remember-machine" class="form-label">
                     <InputCheckbox @bind-Value="Input.RememberMachine" />
                     Remember this machine

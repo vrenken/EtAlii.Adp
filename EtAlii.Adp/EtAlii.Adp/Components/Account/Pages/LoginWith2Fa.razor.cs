@@ -11,8 +11,10 @@ public partial class LoginWith2Fa
 
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private bool RememberMe { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -31,17 +33,17 @@ public partial class LoginWith2Fa
 
         if (result.Succeeded)
         {
-            Logger.LogInformation("User with ID '{UserId}' logged in with 2fa.", userId);
+            Logger.LogInformation("User with ID '{UserId}' logged in with 2fa", userId);
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.IsLockedOut)
         {
-            Logger.LogWarning("User with ID '{UserId}' account locked out.", userId);
+            Logger.LogWarning("User with ID '{UserId}' account locked out", userId);
             RedirectManager.RedirectTo("Account/Lockout");
         }
         else
         {
-            Logger.LogWarning("Invalid authenticator code entered for user with ID '{UserId}'.", userId);
+            Logger.LogWarning("Invalid authenticator code entered for user with ID '{UserId}'", userId);
             _message = "Error: Invalid authenticator code.";
         }
     }

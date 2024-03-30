@@ -9,8 +9,10 @@ public partial class LoginWithRecoveryCode
     private string? _message;
     private ApplicationUser _user = default!;
 
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -30,12 +32,12 @@ public partial class LoginWithRecoveryCode
 
         if (result.Succeeded)
         {
-            Logger.LogInformation("User with ID '{UserId}' logged in with a recovery code.", userId);
+            Logger.LogInformation("User with ID '{UserId}' logged in with a recovery code", userId);
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.IsLockedOut)
         {
-            Logger.LogWarning("User account locked out.");
+            Logger.LogWarning("User account locked out");
             RedirectManager.RedirectTo("Account/Lockout");
         }
         else

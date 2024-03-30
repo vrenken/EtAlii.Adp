@@ -17,12 +17,16 @@ public partial class ExternalLogin
 
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? RemoteError { get; set; }
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? Action { get; set; }
 
     private string? ProviderDisplayName => _externalLoginInfo.ProviderDisplayName;
@@ -70,7 +74,7 @@ public partial class ExternalLogin
         if (result.Succeeded)
         {
             Logger.LogInformation(
-                "{Name} logged in with {LoginProvider} provider.",
+                "{Name} logged in with {LoginProvider} provider",
                 _externalLoginInfo.Principal.Identity?.Name,
                 _externalLoginInfo.LoginProvider);
             RedirectManager.RedirectTo(ReturnUrl);
@@ -101,7 +105,7 @@ public partial class ExternalLogin
             result = await UserManager.AddLoginAsync(user, _externalLoginInfo);
             if (result.Succeeded)
             {
-                Logger.LogInformation("User created an account using {Name} provider.",
+                Logger.LogInformation("User created an account using {Name} provider",
                     _externalLoginInfo.LoginProvider);
 
                 var userId = await UserManager.GetUserIdAsync(user);

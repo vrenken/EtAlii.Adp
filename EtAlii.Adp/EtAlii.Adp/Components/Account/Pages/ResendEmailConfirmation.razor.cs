@@ -14,7 +14,7 @@ public partial class ResendEmailConfirmation
 
     private async Task OnValidSubmitAsync()
     {
-        var user = await UserManager.FindByEmailAsync(Input.Email!);
+        var user = await UserManager.FindByEmailAsync(Input.Email);
         if (user is null)
         {
             _message = "Verification email sent. Please check your email.";

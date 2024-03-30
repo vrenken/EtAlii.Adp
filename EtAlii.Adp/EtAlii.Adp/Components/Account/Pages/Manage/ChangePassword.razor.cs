@@ -34,7 +34,7 @@ public partial class ChangePassword
         }
 
         await SignInManager.RefreshSignInAsync(_user);
-        Logger.LogInformation("User changed their password successfully.");
+        Logger.LogInformation("User changed their password successfully");
 
         RedirectManager.RedirectToCurrentPageWithStatus("Your password has been changed", HttpContext);
     }

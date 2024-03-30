@@ -29,6 +29,6 @@ public partial class GenerateRecoveryCodes
         _recoveryCodes = await UserManager.GenerateNewTwoFactorRecoveryCodesAsync(_user, 10);
         _message = "You have generated new recovery codes.";
 
-        Logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes.", userId);
+        Logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes", userId);
     }
 }

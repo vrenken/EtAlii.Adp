@@ -16,6 +16,7 @@ public partial class DeletePersonalData
 
     protected override async Task OnInitializedAsync()
     {
+        // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
         Input ??= new();
         _user = await UserAccessor.GetRequiredUserAsync(HttpContext);
         _requirePassword = await UserManager.HasPasswordAsync(_user);
@@ -38,7 +39,7 @@ public partial class DeletePersonalData
         await SignInManager.SignOutAsync();
 
         var userId = await UserManager.GetUserIdAsync(_user);
-        Logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
+        Logger.LogInformation("User with ID '{UserId}' deleted themselves", userId);
 
         RedirectManager.RedirectToCurrentPage();
     }
