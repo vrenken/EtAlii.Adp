@@ -44,15 +44,14 @@ public partial class Editor
     
     private void OnPanClick()
     {
-        // _panButtonItemCssClass = "tb-item-middle tb-item-selected selected-button";
-        _panButtonItemCssClass = "tb-item-middle tb-item-selected";
-        _zoomButtonInItemCssClass = "tb-item-start";
-        _zoomButtonOutItemCssClass = "tb-item-start";
-        _viewButtonCssClass = "tb-item-start";
-        _centerButtonCssClass = "tb-item-start";
-        _fitButtonCssClass = "tb-item-start";
-        _pointerButtonCssClass = "tb-item-start";
-        _pointerButtonCssClass = "tb-item-start";
+        _panButtonItemCssClass = "tb-item-selected";
+        _zoomButtonInItemCssClass = string.Empty;
+        _zoomButtonOutItemCssClass = string.Empty;
+        _viewButtonCssClass = string.Empty;
+        _centerButtonCssClass = string.Empty;
+        _fitButtonCssClass = string.Empty;
+        _pointerButtonCssClass = string.Empty;
+        _pointerButtonCssClass = string.Empty;
         _diagramTool = DiagramInteractions.ZoomPan;
         _view = true;
         _center = true;
@@ -63,20 +62,20 @@ public partial class Editor
     {
         if (_diagramTool == DiagramInteractions.Default)
         {
-            _pointerButtonCssClass = "tb-item-middle tb-item-selected";
-            _panButtonItemCssClass = "tb-item-start";
+            _pointerButtonCssClass = "tb-item-selected";
+            _panButtonItemCssClass = string.Empty;
         }
         else
         {
-            _pointerButtonCssClass = "tb-item-start";
-            _panButtonItemCssClass = "tb-item-middle tb-item-selected";
+            _pointerButtonCssClass = string.Empty;
+            _panButtonItemCssClass = "tb-item-selected";
         }
-        _zoomButtonInItemCssClass = "tb-item-start";
-        _zoomButtonOutItemCssClass = "tb-item-start";
-        _viewButtonCssClass = "tb-item-start";
-        _centerButtonCssClass = "tb-item-start";
-        _resetButtonCssClass = "tb-item-start";
-        _fitButtonCssClass = "tb-item-start";       
+        _zoomButtonInItemCssClass = string.Empty;
+        _zoomButtonOutItemCssClass = string.Empty;
+        _viewButtonCssClass = string.Empty;
+        _centerButtonCssClass = string.Empty;
+        _resetButtonCssClass = string.Empty;
+        _fitButtonCssClass = string.Empty;       
         _diagram.ResetZoom();
         _reset = true;
     }
@@ -85,35 +84,35 @@ public partial class Editor
     {
         if (_diagramTool == DiagramInteractions.Default)
         {
-            _pointerButtonCssClass = "tb-item-middle tb-item-selected";
-            _panButtonItemCssClass= "tb-item-start";
+            _pointerButtonCssClass = "tb-item-selected";
+            _panButtonItemCssClass= string.Empty;
         }
         else
         {
-            _pointerButtonCssClass = "tb-item-start";
-            _panButtonItemCssClass = "tb-item-middle tb-item-selected";
+            _pointerButtonCssClass = string.Empty;
+            _panButtonItemCssClass = "tb-item-selected";
         }
-        _zoomButtonInItemCssClass = "tb-item-start";
-        _zoomButtonOutItemCssClass = "tb-item-start";
-        _viewButtonCssClass = "tb-item-start";
-        _centerButtonCssClass = "tb-item-start";
-        _resetButtonCssClass = "tb-item-start";
-        _fitButtonCssClass = "tb-item-start";
+        _zoomButtonInItemCssClass = string.Empty;
+        _zoomButtonOutItemCssClass = string.Empty;
+        _viewButtonCssClass = string.Empty;
+        _centerButtonCssClass = string.Empty;
+        _resetButtonCssClass = string.Empty;
+        _fitButtonCssClass = string.Empty;
         _diagram.FitToPage(new FitOptions { Mode = FitMode.Both, Region = DiagramRegion.Content });
         _reset = false;
     }
     private void OnBringIntoViewClick()
     {
-        _panButtonItemCssClass = "tb-item-start";
-        _zoomButtonInItemCssClass = "tb-item-start";
-        _zoomButtonOutItemCssClass = "tb-item-start";
-        _viewButtonCssClass = "tb-item-start";
-        _centerButtonCssClass = "tb-item-start";
-        _fitButtonCssClass = "tb-item-start";
-        _resetButtonCssClass = "tb-item-start";
+        _panButtonItemCssClass = string.Empty;
+        _zoomButtonInItemCssClass = string.Empty;
+        _zoomButtonOutItemCssClass = string.Empty;
+        _viewButtonCssClass = string.Empty;
+        _centerButtonCssClass = string.Empty;
+        _fitButtonCssClass = string.Empty;
+        _resetButtonCssClass = string.Empty;
         _pointerButtonCssClass = _diagramTool == DiagramInteractions.Default 
-            ? "tb-item-middle tb-item-selected" 
-            : "tb-item-start";
+            ? "tb-item-selected" 
+            : string.Empty;
         if (_diagram.SelectionSettings.Nodes.Count > 0)
         {
             var node = _diagram.SelectionSettings.Nodes[0];
@@ -125,15 +124,15 @@ public partial class Editor
     private void OnBringIntoCenterClick()
     {
         _pointerButtonCssClass = _diagramTool == DiagramInteractions.Default 
-            ? "tb-item-middle tb-item-selected" 
-            : "tb-item-start";
-        _resetButtonCssClass = "tb-item-start";
-        _panButtonItemCssClass = "tb-item-start";
-        _zoomButtonInItemCssClass = "tb-item-start";
-        _zoomButtonOutItemCssClass = "tb-item-start";
-        _viewButtonCssClass = "tb-item-start";
-        _centerButtonCssClass = "tb-item-start";
-        _fitButtonCssClass = "tb-item-start";
+            ? "tb-item-selected" 
+            : string.Empty;
+        _resetButtonCssClass = string.Empty;
+        _panButtonItemCssClass = string.Empty;
+        _zoomButtonInItemCssClass = string.Empty;
+        _zoomButtonOutItemCssClass = string.Empty;
+        _viewButtonCssClass = string.Empty;
+        _centerButtonCssClass = string.Empty;
+        _fitButtonCssClass = string.Empty;
         if (_diagram.SelectionSettings.Nodes.Count > 0)
         {
             var node = _diagram.SelectionSettings.Nodes[0];
@@ -145,19 +144,19 @@ public partial class Editor
     private void OnPointerClick()
     {
         _diagramTool = DiagramInteractions.SingleSelect | DiagramInteractions.MultipleSelect;
-        _panButtonItemCssClass = "tb-item-start";
-        _zoomButtonInItemCssClass = "tb-item-start";
-        _zoomButtonOutItemCssClass = "tb-item-start";
+        _panButtonItemCssClass = string.Empty;
+        _zoomButtonInItemCssClass = string.Empty;
+        _zoomButtonOutItemCssClass = string.Empty;
         if (_diagram.SelectionSettings.Nodes.Count > 0)
         {
-            _viewButtonCssClass = "tb-item-start";
-            _centerButtonCssClass = "tb-item-start";
-            _fitButtonCssClass = "tb-item-start";
+            _viewButtonCssClass = string.Empty;
+            _centerButtonCssClass = string.Empty;
+            _fitButtonCssClass = string.Empty;
             _view = false;
             _center = false;
         }
-        _resetButtonCssClass = "tb-item-start";
-        _pointerButtonCssClass = "tb-item-middle tb-item-selected selected-button";
+        _resetButtonCssClass = string.Empty;
+        _pointerButtonCssClass = "tb-item-selected";
         _reset = true;
     }
 
@@ -165,20 +164,20 @@ public partial class Editor
     {
         if (_diagramTool == DiagramInteractions.Default)
         {
-            _pointerButtonCssClass = "tb-item-middle tb-item-selected";
-            _panButtonItemCssClass= "tb-item-start";
+            _pointerButtonCssClass = "tb-item-selected";
+            _panButtonItemCssClass= string.Empty;
         }
         else
         {
-            _pointerButtonCssClass = "tb-item-start";
-            _panButtonItemCssClass = "tb-item-middle tb-item-selected";
+            _pointerButtonCssClass = string.Empty;
+            _panButtonItemCssClass = "tb-item-selected";
         }
-        _zoomButtonInItemCssClass = "tb-item-start";
-        _zoomButtonOutItemCssClass = "tb-item-start";
-        _viewButtonCssClass = "tb-item-start";
-        _centerButtonCssClass = "tb-item-start";
-        _fitButtonCssClass = "tb-item-start";
-        _resetButtonCssClass = "tb-item-start";
+        _zoomButtonInItemCssClass = string.Empty;
+        _zoomButtonOutItemCssClass = string.Empty;
+        _viewButtonCssClass = string.Empty;
+        _centerButtonCssClass = string.Empty;
+        _fitButtonCssClass = string.Empty;
+        _resetButtonCssClass = string.Empty;
         _diagram.Zoom(1.2, new DiagramPoint { X = 100, Y = 100 });
         _reset = false;
     }
@@ -192,20 +191,20 @@ public partial class Editor
     {
         if (_diagramTool == DiagramInteractions.Default)
         {
-            _pointerButtonCssClass = "tb-item-middle tb-item-selected";
-            _panButtonItemCssClass= "tb-item-start";
+            _pointerButtonCssClass = "tb-item-selected";
+            _panButtonItemCssClass= string.Empty;
         }
         else
         {
-            _pointerButtonCssClass = "tb-item-start";
-            _panButtonItemCssClass = "tb-item-middle tb-item-selected";
+            _pointerButtonCssClass = string.Empty;
+            _panButtonItemCssClass = "tb-item-selected";
         }
-        _zoomButtonInItemCssClass = "tb-item-start";
-        _zoomButtonOutItemCssClass = "tb-item-start";
-        _viewButtonCssClass = "tb-item-start";
-        _centerButtonCssClass = "tb-item-start";
-        _fitButtonCssClass = "tb-item-start";
-        _resetButtonCssClass = "tb-item-start";
+        _zoomButtonInItemCssClass = string.Empty;
+        _zoomButtonOutItemCssClass = string.Empty;
+        _viewButtonCssClass = string.Empty;
+        _centerButtonCssClass = string.Empty;
+        _fitButtonCssClass = string.Empty;
+        _resetButtonCssClass = string.Empty;
         _diagram.Zoom(1 / 1.2, new DiagramPoint { X = 100, Y = 100 });
         _reset = false;
     }    
