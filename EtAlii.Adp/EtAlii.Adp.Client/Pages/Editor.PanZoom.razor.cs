@@ -1,14 +1,10 @@
 ﻿using Syncfusion.Blazor.Diagram;
 using Syncfusion.Blazor.Navigations;
-using Orientation = Syncfusion.Blazor.Diagram.Orientation;
 
 namespace EtAlii.Adp.Client.Pages;
 
 public partial class Editor
 {
-    //Defines diagram constraints
-    private DiagramConstraints _constraints;
-
     // ReSharper disable once NotAccessedField.Local
     private ToolbarItem _zoomInButton = null!;
     private string _zoomButtonOutItemCssClass = null!;
@@ -84,8 +80,7 @@ public partial class Editor
         _reset = true;
     }
 
-
-    private void OnFittoPageClick()
+    private void OnFitToPageClick()
     {
         if (_diagramTool == DiagramInteractions.Default)
         {
@@ -103,10 +98,10 @@ public partial class Editor
         _centerButtonCssClass = "tb-item-start";
         _resetButtonCssClass = "tb-item-start";
         _fitButtonCssClass = "tb-item-start";
-        _diagram.FitToPage(new FitOptions(){ Mode = FitMode.Both, Region = DiagramRegion.Content });
+        _diagram.FitToPage(new FitOptions { Mode = FitMode.Both, Region = DiagramRegion.Content });
         _reset = false;
     }
-    private void OnBringintoViewClick()
+    private void OnBringIntoViewClick()
     {
         _panButtonItemCssClass = "tb-item-start";
         _zoomButtonInItemCssClass = "tb-item-start";
@@ -115,32 +110,22 @@ public partial class Editor
         _centerButtonCssClass = "tb-item-start";
         _fitButtonCssClass = "tb-item-start";
         _resetButtonCssClass = "tb-item-start";
-        if (_diagramTool == DiagramInteractions.Default)
-        {
-            _pointerButtonCssClass = "tb-item-middle tb-item-selected";
-        }
-        else
-        {
-            _pointerButtonCssClass= "tb-item-start";
-        }
+        _pointerButtonCssClass = _diagramTool == DiagramInteractions.Default 
+            ? "tb-item-middle tb-item-selected" 
+            : "tb-item-start";
         if (_diagram.SelectionSettings.Nodes.Count > 0)
         {
-            Node node = _diagram.SelectionSettings.Nodes[0];
-            DiagramRect bound = new DiagramRect((node.OffsetX - (node.Width / 2)), node.OffsetY - (node.Height / 2), node.Width, node.Height);
+            var node = _diagram.SelectionSettings.Nodes[0];
+            var bound = new DiagramRect((node.OffsetX - (node.Width / 2)), node.OffsetY - (node.Height / 2), node.Width, node.Height);
             _diagram.BringIntoView(bound);
         }
         _reset = false;
     }
-    private void OnBringintoCenterClick()
+    private void OnBringIntoCenterClick()
     {
-        if (_diagramTool == DiagramInteractions.Default)
-        {
-            _pointerButtonCssClass = "tb-item-middle tb-item-selected";
-        }
-        else
-        {
-            _pointerButtonCssClass = "tb-item-start";
-        }
+        _pointerButtonCssClass = _diagramTool == DiagramInteractions.Default 
+            ? "tb-item-middle tb-item-selected" 
+            : "tb-item-start";
         _resetButtonCssClass = "tb-item-start";
         _panButtonItemCssClass = "tb-item-start";
         _zoomButtonInItemCssClass = "tb-item-start";
@@ -150,8 +135,8 @@ public partial class Editor
         _fitButtonCssClass = "tb-item-start";
         if (_diagram.SelectionSettings.Nodes.Count > 0)
         {
-            Node node = _diagram.SelectionSettings.Nodes[0];
-            DiagramRect bound = new DiagramRect((node.OffsetX - (node.Width / 2)), node.OffsetY - (node.Height / 2), node.Width, node.Height);
+            var node = _diagram.SelectionSettings.Nodes[0];
+            var bound = new DiagramRect((node.OffsetX - (node.Width / 2)), node.OffsetY - (node.Height / 2), node.Width, node.Height);
             _diagram.BringIntoCenter(bound);
         }
         _reset = false;
@@ -174,12 +159,6 @@ public partial class Editor
         _pointerButtonCssClass = "tb-item-middle tb-item-selected";
         _reset = true;
     }
-    private TreeInfo GetLayoutInfo(IDiagramObject _, TreeInfo options)
-    {
-        options.EnableSubTree = true;
-        options.Orientation = Orientation.Horizontal;
-        return options;
-    }
 
     private void OnZoomInItemClick()
     {
@@ -199,13 +178,15 @@ public partial class Editor
         _centerButtonCssClass = "tb-item-start";
         _fitButtonCssClass = "tb-item-start";
         _resetButtonCssClass = "tb-item-start";
-        _diagram.Zoom(1.2, new DiagramPoint() { X = 100, Y = 100 });
+        _diagram.Zoom(1.2, new DiagramPoint { X = 100, Y = 100 });
         _reset = false;
     }
-    public void ZoomChanged()
+
+    private void ZoomChanged()
     {
         _reset = false;
     }
+
     private void OnZoomOutItemClick()
     {
         if (_diagramTool == DiagramInteractions.Default)
@@ -224,7 +205,7 @@ public partial class Editor
         _centerButtonCssClass = "tb-item-start";
         _fitButtonCssClass = "tb-item-start";
         _resetButtonCssClass = "tb-item-start";
-        _diagram.Zoom(1 / 1.2, new DiagramPoint() { X = 100, Y = 100 });
+        _diagram.Zoom(1 / 1.2, new DiagramPoint { X = 100, Y = 100 });
         _reset = false;
     }    
 }

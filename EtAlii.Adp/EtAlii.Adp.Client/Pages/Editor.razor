@@ -12,10 +12,10 @@
         <ToolbarItem OnClick="@OnPanClick" @ref="@_panButton" PrefixIcon="e-icons e-pan" CssClass="@_panButtonItemCssClass" TooltipText="Pan" />
         <ToolbarItem OnClick="@OnPointerClick" @ref="@_pointerButton" PrefixIcon="e-icons e-mouse-pointer" CssClass="@_pointerButtonCssClass" TooltipText="Select" />
         <ToolbarItem Type="ItemType.Separator" />
-        <ToolbarItem OnClick="@OnBringintoViewClick" @ref="@_viewButton" CssClass="@_viewButtonCssClass" Disabled="@_view" PrefixIcon="e-icons e-bring-to-view" TooltipText="Bring into view" />
-        <ToolbarItem OnClick="@OnBringintoCenterClick" @ref="@_centerButton" CssClass="@_centerButtonCssClass" Disabled="@_center" PrefixIcon="e-icons e-bring-to-center" TooltipText="Bring into center" />
+        <ToolbarItem OnClick="@OnBringIntoViewClick" @ref="@_viewButton" CssClass="@_viewButtonCssClass" Disabled="@_view" PrefixIcon="e-icons e-bring-to-view" TooltipText="Bring into view" />
+        <ToolbarItem OnClick="@OnBringIntoCenterClick" @ref="@_centerButton" CssClass="@_centerButtonCssClass" Disabled="@_center" PrefixIcon="e-icons e-bring-to-center" TooltipText="Bring into center" />
         <ToolbarItem Type="ItemType.Separator" />
-        <ToolbarItem OnClick="@OnFittoPageClick" CssClass="@_fitButtonCssClass" PrefixIcon="e-icons e-zoom-to-fit" @ref="@_fitToPageButton" TooltipText="Fit to page" />
+        <ToolbarItem OnClick="@OnFitToPageClick" CssClass="@_fitButtonCssClass" PrefixIcon="e-icons e-zoom-to-fit" @ref="@_fitToPageButton" TooltipText="Fit to page" />
     </ToolbarItems>
 </SfToolbar>
 
@@ -25,21 +25,26 @@
     Nodes="@_nodes"
     Height="100%"
     Width="100%"
-     InteractionController="@_diagramTool">
-    @* <Layout @bind-Type="Type" @bind-HorizontalSpacing="@HorizontalSpacing" @bind-Orientation="@OrientationType" @bind-VerticalSpacing="@VerticalSpacing" @bind-HorizontalAlignment="@HorizontalAlignment" @bind-VerticalAlignment="@VerticalAlignment"  *@
-    @*         GetLayoutInfo="GetLayoutInfo"> *@
-    @*     <LayoutMargin @bind-Top="@Top" @bind-Bottom="@Bottom" @bind-Right="@Right" @bind-Left="@Left"></LayoutMargin> *@
-    @* </Layout> *@
-        @* @bind-ScrollLimit="@_scrollLimit"  *@
+    InteractionController="@_diagramTool">
     <ScrollSettings 
-        EnableAutoScroll=true 
+        EnableAutoScroll="true" 
         ScrollLimit="ScrollLimitMode.Infinity" 
         CurrentZoomChanged = "@ZoomChanged"/>
     <SnapSettings Constraints="SnapConstraints.All">
-       <HorizontalGridLines LineColor="#EFEFEFC5" />
-       <VerticalGridLines LineColor="#EFEFEFC5" />
+        <HorizontalGridLines LineColor="#EFEFEFC5"/>
+        <VerticalGridLines LineColor="#EFEFEFC5"/>
     </SnapSettings>
 </SfDiagramComponent>
+
+<SfToolbar ID="bottom-panel">
+    <ToolbarItems>
+        <ToolbarItem OnClick="@OnAddArtifactButtonClicked" TooltipText="Add Artifact" CssClass="@_addArtifactButtonCssClass" PrefixIcon="e-icons e-volume" />
+        <ToolbarItem OnClick="@OnAddActionButtonClicked" TooltipText="Add Action" CssClass="@_addActionButtonCssClass" PrefixIcon="e-icons e-critical-path" />
+        <ToolbarItem Type="ItemType.Separator"/>
+        <ToolbarItem TooltipText="Group" PrefixIcon="e-icons e-group-2" />
+        <ToolbarItem TooltipText="Ungroup" PrefixIcon="e-icons e-ungroup-2" />
+    </ToolbarItems>
+</SfToolbar>
 
 <style> 
     html, body { 
@@ -47,13 +52,29 @@
     } 
     
     #top-panel {
-        width: 300px;
+        /*width: 300px;*/
         /* height: 50px; */
         position: absolute;
         /* background: darkslategray; */
         /* border: darkslategray; */
         /*border-radius: 3px;*/
         top: 1%;
+        left: 1%;
+        z-index: 999;
+        /* transform: translate(-50%, -50%); */
+        border-width: 2px;
+        margin: 2px;
+        border-radius: 10px;
+        border-color: gray;
+    }
+    #bottom-panel {
+        /*width: 300px;*/
+        /* height: 50px; */
+        position: absolute;
+        /* background: darkslategray; */
+        /* border: darkslategray; */
+        /*border-radius: 3px;*/
+        bottom: 1%;
         left: 1%;
         z-index: 999;
         /* transform: translate(-50%, -50%); */
