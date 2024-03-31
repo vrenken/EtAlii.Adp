@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Adp.Data;
+﻿namespace EtAlii.Adp.Client;
 
 public class Dependency
 {

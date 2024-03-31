@@ -44,6 +44,7 @@ public partial class Editor
     
     private void OnPanClick()
     {
+        // _panButtonItemCssClass = "tb-item-middle tb-item-selected selected-button";
         _panButtonItemCssClass = "tb-item-middle tb-item-selected";
         _zoomButtonInItemCssClass = "tb-item-start";
         _zoomButtonOutItemCssClass = "tb-item-start";
@@ -57,7 +58,7 @@ public partial class Editor
         _center = true;
         _reset = true;
     }
-
+    
     private void OnResetClick()
     {
         if (_diagramTool == DiagramInteractions.Default)
@@ -116,7 +117,7 @@ public partial class Editor
         if (_diagram.SelectionSettings.Nodes.Count > 0)
         {
             var node = _diagram.SelectionSettings.Nodes[0];
-            var bound = new DiagramRect((node.OffsetX - (node.Width / 2)), node.OffsetY - (node.Height / 2), node.Width, node.Height);
+            var bound = new DiagramRect(node.OffsetX - node.Width / 2, node.OffsetY - node.Height / 2, node.Width, node.Height);
             _diagram.BringIntoView(bound);
         }
         _reset = false;
@@ -136,7 +137,7 @@ public partial class Editor
         if (_diagram.SelectionSettings.Nodes.Count > 0)
         {
             var node = _diagram.SelectionSettings.Nodes[0];
-            var bound = new DiagramRect((node.OffsetX - (node.Width / 2)), node.OffsetY - (node.Height / 2), node.Width, node.Height);
+            var bound = new DiagramRect(node.OffsetX - node.Width / 2, node.OffsetY - node.Height / 2, node.Width, node.Height);
             _diagram.BringIntoCenter(bound);
         }
         _reset = false;
@@ -156,7 +157,7 @@ public partial class Editor
             _center = false;
         }
         _resetButtonCssClass = "tb-item-start";
-        _pointerButtonCssClass = "tb-item-middle tb-item-selected";
+        _pointerButtonCssClass = "tb-item-middle tb-item-selected selected-button";
         _reset = true;
     }
 

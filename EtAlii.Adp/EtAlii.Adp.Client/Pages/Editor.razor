@@ -5,36 +5,34 @@
 
 <SfToolbar ID="top-panel">
     <ToolbarItems>
-        <ToolbarItem OnClick="@OnZoomInItemClick" @ref="@_zoomInButton" TooltipText="Zoom in"  CssClass="@_zoomButtonInItemCssClass" PrefixIcon="e-icons e-zoom-in" />
-        <ToolbarItem OnClick="@OnZoomOutItemClick" @ref="@_zoomOutButton" TooltipText="Zoom out" CssClass="@_zoomButtonOutItemCssClass" PrefixIcon="e-icons e-zoom-out" />
-        <ToolbarItem OnClick="@OnResetClick" Disabled="@_reset" CssClass="@_resetButtonCssClass" PrefixIcon="e-icons e-refresh" @ref="@_resetButton" TooltipText="Reset" />
+        <ToolbarItem TooltipText="Undo" PrefixIcon="e-icons e-undo" />
+        <ToolbarItem TooltipText="Redo" PrefixIcon="e-icons e-redo" />
         <ToolbarItem Type="ItemType.Separator" />
-        <ToolbarItem OnClick="@OnPanClick" @ref="@_panButton" PrefixIcon="e-icons e-pan" CssClass="@_panButtonItemCssClass" TooltipText="Pan" />
-        <ToolbarItem OnClick="@OnPointerClick" @ref="@_pointerButton" PrefixIcon="e-icons e-mouse-pointer" CssClass="@_pointerButtonCssClass" TooltipText="Select" />
+        <ToolbarItem TooltipText="Cut" PrefixIcon="e-icons e-cut" />
+        <ToolbarItem TooltipText="Copy" PrefixIcon="e-icons e-copy" />
+        <ToolbarItem TooltipText="Paste" PrefixIcon="e-icons e-paste" />
         <ToolbarItem Type="ItemType.Separator" />
-        <ToolbarItem OnClick="@OnBringIntoViewClick" @ref="@_viewButton" CssClass="@_viewButtonCssClass" Disabled="@_view" PrefixIcon="e-icons e-bring-to-view" TooltipText="Bring into view" />
-        <ToolbarItem OnClick="@OnBringIntoCenterClick" @ref="@_centerButton" CssClass="@_centerButtonCssClass" Disabled="@_center" PrefixIcon="e-icons e-bring-to-center" TooltipText="Bring into center" />
-        <ToolbarItem Type="ItemType.Separator" />
-        <ToolbarItem OnClick="@OnFitToPageClick" CssClass="@_fitButtonCssClass" PrefixIcon="e-icons e-zoom-to-fit" @ref="@_fitToPageButton" TooltipText="Fit to page" />
+        <ToolbarItem TooltipText="Refresh" PrefixIcon="e-icons e-refresh" />
+        <ToolbarItem TooltipText="Lock" PrefixIcon="e-icons e-lock" />
+        <ToolbarItem TooltipText="Settings" PrefixIcon="e-icons e-settings" />
     </ToolbarItems>
 </SfToolbar>
 
-<SfDiagramComponent
-    @ref="@_diagram"
-    Connectors="@_connectors"
-    Nodes="@_nodes"
-    Height="100%"
-    Width="100%"
-    InteractionController="@_diagramTool">
-    <ScrollSettings 
-        EnableAutoScroll="true" 
-        ScrollLimit="ScrollLimitMode.Infinity" 
-        CurrentZoomChanged = "@ZoomChanged"/>
-    <SnapSettings Constraints="SnapConstraints.All">
-        <HorizontalGridLines LineColor="#EFEFEFC5"/>
-        <VerticalGridLines LineColor="#EFEFEFC5"/>
-    </SnapSettings>
-</SfDiagramComponent>
+<SfToolbar 
+    ID="right-panel"
+    Width="44" 
+    OverflowMode="OverflowMode.MultiRow">
+    <ToolbarItems>
+        <ToolbarItem OnClick="@OnZoomInItemClick" @ref="@_zoomInButton" TooltipText="Zoom in"  CssClass="@_zoomButtonInItemCssClass" PrefixIcon="e-icons e-zoom-in" />
+        <ToolbarItem OnClick="@OnZoomOutItemClick" @ref="@_zoomOutButton" TooltipText="Zoom out" CssClass="@_zoomButtonOutItemCssClass" PrefixIcon="e-icons e-zoom-out" />
+        <ToolbarItem OnClick="@OnResetClick" Disabled="@_reset" CssClass="@_resetButtonCssClass" PrefixIcon="e-icons e-refresh" @ref="@_resetButton" TooltipText="Reset" />
+        <ToolbarItem OnClick="@OnPanClick" @ref="@_panButton" PrefixIcon="e-icons e-pan" CssClass="@_panButtonItemCssClass" TooltipText="Pan"/>
+        <ToolbarItem OnClick="@OnPointerClick" @ref="@_pointerButton" PrefixIcon="e-icons e-mouse-pointer" CssClass="@_pointerButtonCssClass" TooltipText="Select" />
+        <ToolbarItem OnClick="@OnBringIntoViewClick" @ref="@_viewButton" CssClass="@_viewButtonCssClass" Disabled="@_view" PrefixIcon="e-icons e-bring-to-view" TooltipText="Bring into view" />
+        <ToolbarItem OnClick="@OnBringIntoCenterClick" @ref="@_centerButton" CssClass="@_centerButtonCssClass" Disabled="@_center" PrefixIcon="e-icons e-bring-to-center" TooltipText="Bring into center" />
+        <ToolbarItem OnClick="@OnFitToPageClick" CssClass="@_fitButtonCssClass" PrefixIcon="e-icons e-zoom-to-fit" @ref="@_fitToPageButton" TooltipText="Fit to page" />
+    </ToolbarItems>
+</SfToolbar>
 
 <SfToolbar ID="bottom-panel">
     <ToolbarItems>
@@ -46,10 +44,46 @@
     </ToolbarItems>
 </SfToolbar>
 
+<SfToolbar 
+    Width="44" ID="left-panel" 
+    OverflowMode="OverflowMode.MultiRow">
+    <ToolbarItems>
+        <ToolbarItem OnClick="@OnAddArtifactButtonClicked" TooltipText="Add Artifact" CssClass="@_addArtifactButtonCssClass" PrefixIcon="e-icons e-volume" />
+        <ToolbarItem OnClick="@OnAddActionButtonClicked" TooltipText="Add Action" CssClass="@_addActionButtonCssClass" PrefixIcon="e-icons e-critical-path" />
+        <ToolbarItem TooltipText="Group" PrefixIcon="e-icons e-group-2" />
+        <ToolbarItem TooltipText="Ungroup" PrefixIcon="e-icons e-ungroup-2" />
+    </ToolbarItems>
+</SfToolbar>
+
+<SfDiagramComponent
+    @ref="@_diagram"
+    Connectors="@_connectors"
+    Nodes="@_nodes"
+    Height="100%"
+    Width="100%"
+    InteractionController="@_diagramTool"
+    Click="OnClicked">
+    <ScrollSettings
+        EnableAutoScroll="true"
+        ScrollLimit="ScrollLimitMode.Infinity"
+        CurrentZoomChanged="@ZoomChanged" />
+    <SnapSettings Constraints="SnapConstraints.All">
+        <HorizontalGridLines LineColor="#EFEFEFC5"/>
+        <VerticalGridLines LineColor="#EFEFEFC5"/>
+    </SnapSettings>
+</SfDiagramComponent>
+
 <style> 
     html, body { 
        height:100%; 
     } 
+    
+    :root {
+        --adp-panel-min-spacing : 10px;
+        --adp-panel-max-spacing: 70px;
+        --adp-panel-top-bottom-margin: 5px;
+        --adp-panel-corner-radius: 10px;
+    }
     
     #top-panel {
         /*width: 300px;*/
@@ -58,14 +92,41 @@
         /* background: darkslategray; */
         /* border: darkslategray; */
         /*border-radius: 3px;*/
-        top: 1%;
-        left: 1%;
+        top: var(--adp-panel-min-spacing);
+        right: var(--adp-panel-max-spacing);
         z-index: 999;
         /* transform: translate(-50%, -50%); */
         border-width: 2px;
         margin: 2px;
-        border-radius: 10px;
+        border-radius: var(--adp-panel-corner-radius);
         border-color: gray;
+    }
+    #right-panel {
+        /*width: 300px;*/
+        /* height: 50px; */
+        position: absolute;
+        /* background: darkslategray; */
+        /* border: darkslategray; */
+        /*border-radius: 3px;*/
+        top: var(--adp-panel-max-spacing);
+        right: var(--adp-panel-min-spacing);
+        z-index: 999;
+        /* transform: translate(-50%, -50%); */
+        border-width: 2px;
+        margin: 2px;
+        border-radius: var(--adp-panel-corner-radius);
+        border-color: gray;
+        
+        .e-toolbar-items {
+            margin-top: var(--adp-panel-top-bottom-margin);
+            margin-bottom: var(--adp-panel-top-bottom-margin);
+            margin-left: 2px;
+            margin-right: 0px;
+            white-space: normal;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            align-content: center;
+        }
     }
     #bottom-panel {
         /*width: 300px;*/
@@ -74,13 +135,50 @@
         /* background: darkslategray; */
         /* border: darkslategray; */
         /*border-radius: 3px;*/
-        bottom: 1%;
-        left: 1%;
+        bottom: var(--adp-panel-min-spacing);
+        left: var(--adp-panel-max-spacing);
         z-index: 999;
         /* transform: translate(-50%, -50%); */
         border-width: 2px;
         margin: 2px;
-        border-radius: 10px;
+        border-radius: var(--adp-panel-corner-radius);
         border-color: gray;
     }
+    #left-panel {
+        position: absolute;
+        /* background: darkslategray; */
+        /* border: darkslategray; */
+        /*border-radius: 3px;*/
+        bottom: var(--adp-panel-max-spacing);
+        left: var(--adp-panel-min-spacing);
+        z-index: 999;
+        /* transform: translate(-50%, -50%); */
+        border-width: 2px;
+        margin: 2px;
+        border-radius: var(--adp-panel-corner-radius);
+        border-color: gray;
+        
+        .e-toolbar-items {
+            margin-top: var(--adp-panel-top-bottom-margin);
+            margin-bottom: var(--adp-panel-top-bottom-margin);
+            margin-left: 2px;
+            margin-right: 0px;
+            white-space: normal;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            align-content: center;
+        }
+    }
+    
+    /*.selected-button { */
+    /*    background: limegreen;*/
+    /*}*/
+    
+    /*.selected-button > button { */
+    /*    background-color: darkslategray;*/
+    /*}*/
+    /*.selected-button > button > span {*/
+    /*    color: white; */
+    /*}*/
+ 
 </style> 

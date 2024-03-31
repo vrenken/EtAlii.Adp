@@ -1,3 +1,4 @@
+using EtAlii.Adp.Client;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
