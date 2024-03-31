@@ -13,4 +13,10 @@
     <PackageReference Include="Syncfusion.Blazor.Themes" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Pages\Editor.PanZoom.razor.cs">
+      <DependentUpon>Editor.razor</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
