@@ -7,12 +7,12 @@ public partial class Editor
 
     private void OnAddArtifactButtonClicked()
     {
-        _addArtifactButtonCssClass = "tb-item-middle tb-item-selected";
-        _addActionButtonCssClass= "tb-item-start";
+        _addArtifactButtonCssClass = "tb-item-selected";
+        _addActionButtonCssClass= string.Empty;
     }
     private void OnAddActionButtonClicked()
     {
-        _addActionButtonCssClass = "tb-item-middle tb-item-selected";
-        _addArtifactButtonCssClass= "tb-item-start";
+        _addActionButtonCssClass = "tb-item-selected";
+        _addArtifactButtonCssClass= string.Empty;
     }
 }

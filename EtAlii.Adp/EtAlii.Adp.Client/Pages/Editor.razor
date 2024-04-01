@@ -23,14 +23,22 @@
     Width="44" 
     OverflowMode="OverflowMode.MultiRow">
     <ToolbarItems>
-        <ToolbarItem OnClick="@OnZoomInItemClick" @ref="@_zoomInButton" TooltipText="Zoom in"  CssClass="@_zoomButtonInItemCssClass" PrefixIcon="e-icons e-zoom-in" />
-        <ToolbarItem OnClick="@OnZoomOutItemClick" @ref="@_zoomOutButton" TooltipText="Zoom out" CssClass="@_zoomButtonOutItemCssClass" PrefixIcon="e-icons e-zoom-out" />
-        <ToolbarItem OnClick="@OnResetClick" Disabled="@_reset" CssClass="@_resetButtonCssClass" PrefixIcon="e-icons e-refresh" @ref="@_resetButton" TooltipText="Reset" />
-        <ToolbarItem OnClick="@OnPanClick" @ref="@_panButton" PrefixIcon="e-icons e-pan" CssClass="@_panButtonItemCssClass" TooltipText="Pan"/>
-        <ToolbarItem OnClick="@OnPointerClick" @ref="@_pointerButton" PrefixIcon="e-icons e-mouse-pointer" CssClass="@_pointerButtonCssClass" TooltipText="Select" />
-        <ToolbarItem OnClick="@OnBringIntoViewClick" @ref="@_viewButton" CssClass="@_viewButtonCssClass" Disabled="@_view" PrefixIcon="e-icons e-bring-to-view" TooltipText="Bring into view" />
-        <ToolbarItem OnClick="@OnBringIntoCenterClick" @ref="@_centerButton" CssClass="@_centerButtonCssClass" Disabled="@_center" PrefixIcon="e-icons e-bring-to-center" TooltipText="Bring into center" />
-        <ToolbarItem OnClick="@OnFitToPageClick" CssClass="@_fitButtonCssClass" PrefixIcon="e-icons e-zoom-to-fit" @ref="@_fitToPageButton" TooltipText="Fit to page" />
+        @foreach (var button in _rightToolbar)
+        {
+            @if (button == ToolbarButton.Separatator)
+            {
+                <ToolbarItem Type="ItemType.Separator"/>
+            }
+            else
+            {
+                <ToolbarItem 
+                    TooltipText="@button.TooltipText" 
+                    OnClick="@button.Clicked"
+                    Disabled="@button.IsDisabled"
+                    CssClass="@button.CssClass" 
+                    PrefixIcon="@($"e-icons {button.Icon}")"/>
+            }
+        }
     </ToolbarItems>
 </SfToolbar>
 
