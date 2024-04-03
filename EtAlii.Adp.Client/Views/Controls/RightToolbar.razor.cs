@@ -1,8 +1,7 @@
-﻿using EtAlii.Adp.Client.Pages;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.Diagram;
 
-namespace EtAlii.Adp.Client.Controls;
+namespace EtAlii.Adp.Client;
 
 public partial class RightToolbar
 {

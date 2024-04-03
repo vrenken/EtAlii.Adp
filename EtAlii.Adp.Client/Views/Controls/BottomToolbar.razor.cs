@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Adp.Client.Controls;
+﻿namespace EtAlii.Adp.Client;
 
 public partial class BottomToolbar
 {

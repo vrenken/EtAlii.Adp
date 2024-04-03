@@ -1,6 +1,4 @@
-﻿using EtAlii.Adp.Client.Pages;
-
-namespace EtAlii.Adp.Client.Controls;
+﻿namespace EtAlii.Adp.Client;
 
 public partial class LeftToolbar
 {

@@ -1,6 +1,6 @@
 ﻿using Syncfusion.Blazor.Diagram;
 
-namespace EtAlii.Adp.Client.Pages;
+namespace EtAlii.Adp.Client;
 
 public partial class Editor
 {
