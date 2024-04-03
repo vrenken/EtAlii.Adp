@@ -23,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\" />
+    <Folder Include="ViewModel\Commands\" />
+    <Folder Include="ViewModel\_Model\" />
   </ItemGroup>
 
   <ItemGroup>
