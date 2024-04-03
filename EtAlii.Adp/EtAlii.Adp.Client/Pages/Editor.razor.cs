@@ -16,72 +16,8 @@ public partial class Editor
     /// </summary>
     private readonly DiagramObjectCollection<Connector> _connectors = new();
     
-    private DiagramInteractions _diagramTool = DiagramInteractions.ZoomPan;
-
     public Editor()
     {
-        _zoomButtonIn = new()
-        {
-            Clicked = OnZoomInItemClick,
-            TooltipText = "Zoom in",
-            Icon = "e-zoom-in",
-        };
-
-        _zoomButtonOut = new()
-        {
-            Clicked = OnZoomOutItemClick,
-            TooltipText = "Zoom out",
-            Icon = "e-zoom-out"
-        };
-        _resetButton = new()
-        {
-            Clicked = OnResetClick,
-            TooltipText = "Reset",
-            Icon = "e-refresh",
-        };
-        _panButton = new()
-        {
-            Clicked = OnPanClick,
-            TooltipText = "Pan",
-            Icon = "e-pan",
-        };
-        _pointerButton = new()
-        {
-            Clicked = OnPointerClick,
-            TooltipText = "Select",
-            Icon = "e-mouse-pointer"
-        };
-        _viewButton = new()
-        {
-            Clicked = OnBringIntoViewClick,
-            TooltipText = "Bring into view",
-            Icon = "e-bring-to-view" 
-        };
-        _centerButton = new()
-        {
-            Clicked = OnBringIntoCenterClick,
-            TooltipText = "Bring into center",
-            Icon = "e-bring-to-center"
-        };
-        _fitToPageButton = new()
-        {
-            Clicked = OnFitToPageClick,
-            TooltipText = "Fit to page",
-            Icon = "e-zoom-to-fit"
-
-        };
-
-        _rightToolbar =
-        [
-            _zoomButtonOut,
-            _zoomButtonIn,
-            _panButton,
-            _pointerButton,
-            _viewButton,
-            _centerButton,
-            _fitToPageButton,
-            _resetButton
-        ];
     }
     protected override void OnInitialized()
     {
@@ -90,6 +26,14 @@ public partial class Editor
 
     private void OnClicked(ClickEventArgs e)
     {
+        // if (_addActionButton.IsToggled)
+        // {
+        //     var startItem = new Item { Id = Guid.NewGuid(), Position = new((float)e.Position.X, (float)e.Position.Y), Size = new(145, 60), Label = "New action" };
+        //     var node = NodeFactory.Create(startItem);
+        //     _nodes.Add(node);
+        // }
+        
+        
         // if (e.Element == null)
         // {
         //     _diagramTool = DiagramInteractions.ZoomPan;

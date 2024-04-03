@@ -4,6 +4,18 @@ namespace EtAlii.Adp.Client;
 
 public static class NodeFactory
 {
+    private static readonly NodeConstraints NodeConstraints =
+        NodeConstraints.Resize |
+        NodeConstraints.RoutingObstacle |
+        NodeConstraints.OutConnect |
+        NodeConstraints.InConnect |
+        NodeConstraints.Delete |
+        NodeConstraints.PointerEvents |
+        //NodeConstraints.Rotate |
+        NodeConstraints.Drag |
+        NodeConstraints.Select |
+        NodeConstraints.HideThumbs;
+
     public static Node Create(Item item)
     {
         var node = new Node
@@ -26,8 +38,9 @@ public static class NodeFactory
                 //Sets the corner radius to the node shape.
                 CornerRadius = 10
             },
-            // Shape = new FlowShape { Type = NodeShapes.Flow, Shape = shape },
-            // Defines the annotation collection of the node.
+            Constraints = NodeConstraints, 
+
+            //Constraints = nodecon
             Annotations =
             [
                 new ShapeAnnotation
@@ -40,8 +53,25 @@ public static class NodeFactory
                     }
                 }
             ],
+            Ports = 
+            [
+                CreatePort(1.0f, 0.5f),
+                CreatePort(0.0f, 0.5f)
+            ],
             Data = item
         };
         return node;
+    }
+
+    private static PointPort CreatePort(float x, float y)
+    {
+        return new PointPort
+        {
+            Style = new ShapeStyle { Fill = "white" },
+            Offset = new DiagramPoint { X = x, Y = y },
+            Visibility = PortVisibility.Visible,
+            Width = 8, Height = 8,
+            Shape = PortShapes.Circle
+        };
     }
 }

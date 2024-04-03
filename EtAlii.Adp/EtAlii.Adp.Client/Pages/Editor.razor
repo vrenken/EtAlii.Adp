@@ -1,70 +1,12 @@
 ﻿@page "/"
 @rendermode InteractiveAuto
 @using Syncfusion.Blazor.Diagram;
-@using Syncfusion.Blazor.Navigations;
+@using EtAlii.Adp.Client.Controls;
 
-<SfToolbar ID="top-panel">
-    <ToolbarItems>
-        <ToolbarItem TooltipText="Undo" PrefixIcon="e-icons e-undo" />
-        <ToolbarItem TooltipText="Redo" PrefixIcon="e-icons e-redo" />
-        <ToolbarItem Type="ItemType.Separator" />
-        <ToolbarItem TooltipText="Cut" PrefixIcon="e-icons e-cut" />
-        <ToolbarItem TooltipText="Copy" PrefixIcon="e-icons e-copy" />
-        <ToolbarItem TooltipText="Paste" PrefixIcon="e-icons e-paste" />
-        <ToolbarItem Type="ItemType.Separator" />
-        <ToolbarItem TooltipText="Refresh" PrefixIcon="e-icons e-refresh" />
-        <ToolbarItem TooltipText="Lock" PrefixIcon="e-icons e-lock" />
-        <ToolbarItem TooltipText="Settings" PrefixIcon="e-icons e-settings" />
-    </ToolbarItems>
-</SfToolbar>
-
-<SfToolbar 
-    ID="right-panel"
-    Width="44" 
-    OverflowMode="OverflowMode.MultiRow">
-    <ToolbarItems>
-        @foreach (var button in _rightToolbar)
-        {
-            @if (button == ToolbarButton.Separatator)
-            {
-                <ToolbarItem Type="ItemType.Separator"/>
-            }
-            else
-            {
-                <ToolbarItem 
-                    TooltipText="@button.TooltipText" 
-                    OnClick="@button.Clicked"
-                    Disabled="@button.IsDisabled"
-                    CssClass="@button.CssClass" 
-                    PrefixIcon="@($"e-icons {button.Icon}")"/>
-            }
-        }
-    </ToolbarItems>
-</SfToolbar>
-
-<SfToolbar ID="bottom-panel">
-    <ToolbarItems>
-        <ToolbarItem TooltipText="Change color" PrefixIcon="e-icons e-style" />
-        <ToolbarItem TooltipText="Edit text" PrefixIcon="e-icons e-text-annotation" />
-        <ToolbarItem TooltipText="Edit annotation" PrefixIcon="e-icons e-annotation-edit" />
-        <ToolbarItem TooltipText="Delete" PrefixIcon="e-icons e-trash" />
-        <ToolbarItem Type="ItemType.Separator"/>
-        <ToolbarItem TooltipText="Search" PrefixIcon="e-icons e-bookmark" />
-        <ToolbarItem TooltipText="Bookmark" PrefixIcon="e-icons e-search" />
-        <ToolbarItem TooltipText="Filter" PrefixIcon="e-icons e-filter" />
-    </ToolbarItems>
-</SfToolbar>
-
-<SfToolbar 
-    Width="44" ID="left-panel" 
-    OverflowMode="OverflowMode.MultiRow">
-    <ToolbarItems>
-        <ToolbarItem OnClick="@OnAddArtifactButtonClicked" TooltipText="Add Artifact" CssClass="@_addArtifactButtonCssClass" PrefixIcon="e-icons e-volume" />
-        <ToolbarItem OnClick="@OnAddActionButtonClicked" TooltipText="Add Action" CssClass="@_addActionButtonCssClass" PrefixIcon="e-icons e-critical-path" />
-        <ToolbarItem TooltipText="Group" PrefixIcon="e-icons e-group-2" />
-        <ToolbarItem TooltipText="Ungroup" PrefixIcon="e-icons e-ungroup-2" />
-    </ToolbarItems>
-</SfToolbar>
+<TopToolbar />
+<RightToolbar Diagram="@_diagram" />
+<LeftToolbar />
+<BottomToolbar />
 
 <SfDiagramComponent
     @ref="@_diagram"
@@ -72,12 +14,12 @@
     Nodes="@_nodes"
     Height="100%"
     Width="100%"
-    InteractionController="@_diagramTool"
-    Click="OnClicked">
-    <ScrollSettings
-        EnableAutoScroll="true"
-        ScrollLimit="ScrollLimitMode.Infinity"
-        CurrentZoomChanged="@ZoomChanged" />
+    Click="OnClicked"
+    InteractionController="DiagramInteractions.ZoomPan">
+        <ScrollSettings
+            EnableAutoScroll="true"
+            ScrollLimit="ScrollLimitMode.Infinity"/>
+        @* CurrentZoomChanged="@ZoomChanged" *@
     <SnapSettings Constraints="SnapConstraints.All">
         <HorizontalGridLines LineColor="#EFEFEFC5"/>
         <VerticalGridLines LineColor="#EFEFEFC5"/>
@@ -95,48 +37,8 @@
         --adp-panel-top-bottom-margin: 5px;
         --adp-panel-corner-radius: 10px;
     }
-    
-    #top-panel {
-        position: absolute;
-        top: var(--adp-panel-min-spacing);
-        right: var(--adp-panel-max-spacing);
-        z-index: 999;
-        border-width: 2px;
-        margin: 2px;
-        border-radius: var(--adp-panel-corner-radius);
-        border-color: gray;
-    }
-    #right-panel {
-        position: absolute;
-        top: var(--adp-panel-max-spacing);
-        right: var(--adp-panel-min-spacing);
-        z-index: 999;
-        border-width: 2px;
-        margin: 2px;
-        border-radius: var(--adp-panel-corner-radius);
-        border-color: gray;
-        
-        .e-toolbar-items {
-            margin-top: var(--adp-panel-top-bottom-margin);
-            margin-bottom: var(--adp-panel-top-bottom-margin);
-            margin-left: 2px;
-            margin-right: 0px;
-            white-space: normal;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            align-content: center;
-        }
-    }
-    #bottom-panel {
-        position: absolute;
-        bottom: var(--adp-panel-min-spacing);
-        left: var(--adp-panel-max-spacing);
-        z-index: 999;
-        border-width: 2px;
-        margin: 2px;
-        border-radius: var(--adp-panel-corner-radius);
-        border-color: gray;
-    }
+     
+
 
 
     *.e-btn-group:not(.e-rtl):not(.e-vertical) .e-btn:first-of-type, *.e-css.e-btn-group:not(.e-rtl):not(.e-vertical) .e-btn:first-of-type {
@@ -165,27 +67,6 @@
     }
 
 
-    #left-panel {
-        position: absolute;
-        bottom: var(--adp-panel-max-spacing);
-        left: var(--adp-panel-min-spacing);
-        z-index: 999;
-        border-width: 2px;
-        margin: 2px;
-        border-radius: var(--adp-panel-corner-radius);
-        border-color: gray;
-        
-        .e-toolbar-items {
-            margin-top: var(--adp-panel-top-bottom-margin);
-            margin-bottom: var(--adp-panel-top-bottom-margin);
-            margin-left: 2px;
-            margin-right: 0px;
-            white-space: normal;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            align-content: center;
-        }
-    }
     
     .e-toolbar .tb-item-selected .e-tbar-btn {
         background-color: darkslategray;
