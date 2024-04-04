@@ -23,7 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\Commands\" />
+    <Folder Include="Functional\Dependencies\" />
+    <Folder Include="Functional\Editor\" />
+    <Folder Include="Functional\Nodes\" />
+    <Folder Include="Functional\PanZoom\" />
+    <Folder Include="Model\" />
     <Folder Include="ViewModel\_Model\" />
   </ItemGroup>
 
