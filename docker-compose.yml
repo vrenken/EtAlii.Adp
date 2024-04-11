@@ -1,0 +1,6 @@
+﻿services:
+  etalii.adp.service:
+    image: etalii.adp.service
+    build:
+      context: .
+      dockerfile: EtAlii.Adp.Service/Dockerfile
