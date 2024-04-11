@@ -1,0 +1,21 @@
+{
+  "schema": "schema.graphql",
+  "documents": "**/*.graphql",
+  "extensions": {
+    "strawberryShake": {
+      "name": "AdpClient",
+      "url": "https://localhost:7276/api",
+      "namespace": "EtAlii.Adp.Client",
+      "records": {
+        "inputs": false,
+        "entities": false
+      },
+      "transportProfiles": [
+        {
+          "default": "Http",
+          "subscription": "WebSocket"
+        }
+      ]
+    }
+  }
+}
