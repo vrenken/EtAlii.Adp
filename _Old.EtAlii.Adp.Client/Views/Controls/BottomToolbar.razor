@@ -1,0 +1,29 @@
+﻿@rendermode InteractiveAuto
+@namespace EtAlii.Adp.Client
+@using Syncfusion.Blazor.Navigations
+
+<SfToolbar ID="bottom-panel">
+    <ToolbarItems>
+        <ToolbarItem TooltipText="Change color" PrefixIcon="e-icons e-style" />
+        <ToolbarItem TooltipText="Edit text" PrefixIcon="e-icons e-text-annotation" />
+        <ToolbarItem TooltipText="Edit annotation" PrefixIcon="e-icons e-annotation-edit" />
+        <ToolbarItem TooltipText="Delete" PrefixIcon="e-icons e-trash" />
+        <ToolbarItem Type="ItemType.Separator"/>
+        <ToolbarItem TooltipText="Search" PrefixIcon="e-icons e-bookmark" />
+        <ToolbarItem TooltipText="Bookmark" PrefixIcon="e-icons e-search" />
+        <ToolbarItem TooltipText="Filter" PrefixIcon="e-icons e-filter" />
+    </ToolbarItems>
+</SfToolbar>
+
+<style>
+    #bottom-panel {
+        position: absolute;
+        bottom: var(--adp-panel-min-spacing);
+        left: var(--adp-panel-max-spacing);
+        z-index: 999;
+        border-width: 2px;
+        margin: 2px;
+        border-radius: var(--adp-panel-corner-radius);
+        border-color: gray;
+    }    
+</style>

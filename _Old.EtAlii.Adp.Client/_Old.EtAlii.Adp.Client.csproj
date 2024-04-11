@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+    <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
+    <RootNamespace>EtAlii.Adp.Client</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" />
+    <PackageReference Include="ReactiveUI.Blazor" />
+    <PackageReference Include="Syncfusion.Blazor.Diagram" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\Editor.TestData.razor.cs">
+      <DependentUpon>Editor.razor</DependentUpon>
+    </Compile>
+    <Compile Update="ViewModel\EditPageViewModel.TestData.razor.cs">
+      <DependentUpon>EditPageViewModel.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Functional\Dependencies\" />
+    <Folder Include="Functional\Editor\" />
+    <Folder Include="Functional\Nodes\" />
+    <Folder Include="Functional\PanZoom\" />
+    <Folder Include="Model\" />
+    <Folder Include="ViewModel\_Model\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Controls\BottomToolbar.razor" />
+    <AdditionalFiles Include="Views\Controls\LeftToolbar.razor" />
+    <AdditionalFiles Include="Views\Controls\RightToolbar.razor" />
+    <AdditionalFiles Include="Views\Controls\TopToolbar.razor" />
+    <AdditionalFiles Include="Views\Pages\Auth.razor" />
+    <AdditionalFiles Include="Views\Pages\Counter.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Controls\BottomToolbar.razor" />
+    <_ContentIncludedByDefault Remove="Controls\LeftToolbar.razor" />
+    <_ContentIncludedByDefault Remove="Controls\RightToolbar.razor" />
+    <_ContentIncludedByDefault Remove="Controls\TopToolbar.razor" />
+  </ItemGroup>
+
+</Project>

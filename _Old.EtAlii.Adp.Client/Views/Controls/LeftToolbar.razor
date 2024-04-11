@@ -1,0 +1,50 @@
+﻿@namespace EtAlii.Adp.Client
+@rendermode InteractiveAuto
+@using Syncfusion.Blazor.Navigations
+
+<SfToolbar 
+    Width="44" ID="left-panel" 
+    OverflowMode="OverflowMode.MultiRow">
+    <ToolbarItems>
+        @foreach (var button in _leftToolbar)
+        {
+            @if (button == ToolbarButton.Separatator)
+            {
+                <ToolbarItem Type="ItemType.Separator"/>
+            }
+            else
+            {
+                <ToolbarItem 
+                    TooltipText="@button.TooltipText" 
+                    OnClick="@button.Clicked"
+                    Disabled="@button.IsDisabled"
+                    CssClass="@button.CssClass" 
+                    PrefixIcon="@($"e-icons {button.Icon}")"/>
+            }
+        }
+    </ToolbarItems>
+</SfToolbar>
+
+<style>
+    #left-panel {
+        position: absolute;
+        bottom: var(--adp-panel-max-spacing);
+        left: var(--adp-panel-min-spacing);
+        z-index: 999;
+        border-width: 2px;
+        margin: 2px;
+        border-radius: var(--adp-panel-corner-radius);
+        border-color: gray;
+        
+        .e-toolbar-items {
+            margin-top: var(--adp-panel-top-bottom-margin);
+            margin-bottom: var(--adp-panel-top-bottom-margin);
+            margin-left: 2px;
+            margin-right: 0px;
+            white-space: normal;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            align-content: center;
+        }
+    }    
+</style>

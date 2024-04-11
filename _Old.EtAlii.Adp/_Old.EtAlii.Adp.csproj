@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <UserSecretsId>aspnet-EtAlii.Adp-3dc10886-cb71-4b6b-a459-2a60ee0505e2</UserSecretsId>
+    <RootNamespace>EtAlii.Adp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Adp.Client\EtAlii.Adp.Client.csproj" />
+    <ProjectReference Include="..\_Old.EtAlii.Adp.Client\_Old.EtAlii.Adp.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />

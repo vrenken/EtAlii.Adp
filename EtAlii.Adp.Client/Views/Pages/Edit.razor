@@ -2,6 +2,7 @@
 @namespace EtAlii.Adp.Client
 @rendermode InteractiveAuto
 @using Syncfusion.Blazor.Diagram
+@inherits  ReactiveComponentBase<EditPageViewModel>
 
 <TopToolbar />
 <RightToolbar Diagram="@_diagram" />
@@ -16,10 +17,10 @@
     Width="100%"
     Click="OnClicked"
     InteractionController="DiagramInteractions.ZoomPan">
-        <ScrollSettings
-            EnableAutoScroll="true"
-            ScrollLimit="ScrollLimitMode.Infinity"/>
-        @* CurrentZoomChanged="@ZoomChanged" *@
+    <ScrollSettings
+        EnableAutoScroll="true"
+        ScrollLimit="ScrollLimitMode.Infinity"/>
+    @* CurrentZoomChanged="@ZoomChanged" *@
     <SnapSettings Constraints="SnapConstraints.All">
         <HorizontalGridLines LineColor="#EFEFEFC5"/>
         <VerticalGridLines LineColor="#EFEFEFC5"/>

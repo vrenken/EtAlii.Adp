@@ -2,33 +2,36 @@
 
 namespace EtAlii.Adp.Client;
 
-public partial class Editor
+public partial class EditPageViewModel
 {
-    private void InitDiagramModel()
+    private (IReadOnlyList<Node>, IReadOnlyList<Connector>) InitDiagramModel()
     {
+        var nodes = new List<Node>();
+        var connectors = new List<Connector>();
+        
         var startItem = new Item { Id = Guid.NewGuid(), Position = new(300, 50), Size = new(145, 60), Label = "Start" };
         var node = NodeFactory.Create(startItem);
-        _nodes.Add(node);
+        nodes.Add(node);
 
         var initItem = new Item { Id = Guid.NewGuid(), Position = new(300, 140), Size = new(145, 60), Label = "Init" };
         node = NodeFactory.Create(initItem);
-        _nodes.Add(node);
+        nodes.Add(node);
 
         var conditionItem = new Item { Id = Guid.NewGuid(), Position = new(300, 230), Size = new(145, 60), Label = "Condition" };
         node = NodeFactory.Create(conditionItem);
-        _nodes.Add(node);
+        nodes.Add(node);
 
         var printItem = new Item { Id = Guid.NewGuid(), Position = new(300, 320), Size = new(145, 60), Label = "Print" };
         node = NodeFactory.Create(printItem);
-        _nodes.Add(node);
+        nodes.Add(node);
 
         var incrementItem = new Item { Id = Guid.NewGuid(), Position = new(300, 410), Size = new(145, 60), Label = "Increment" };
         node = NodeFactory.Create(incrementItem);
-        _nodes.Add(node);
+        nodes.Add(node);
 
         var endItem = new Item { Id = Guid.NewGuid(), Position = new(300, 500), Size = new(145, 60), Label = "End" };
         node = NodeFactory.Create(endItem);
-        _nodes.Add(node);
+        nodes.Add(node);
 
         // Creates orthogonal connector.
         var segment1 = new OrthogonalSegment
@@ -55,16 +58,19 @@ public partial class Editor
             Length = 200,
             Direction = Direction.Top,
         };
-        CreateConnector(startItem, initItem);
-        CreateConnector(initItem, conditionItem);
-        CreateConnector(conditionItem, printItem);
-        CreateConnector(conditionItem, endItem, "Yes", segment1, segment2);
-        CreateConnector(printItem, incrementItem, "No");
-        CreateConnector(incrementItem, conditionItem, null!, segment3, segment4);
+        CreateConnector(connectors, startItem, initItem);
+        CreateConnector(connectors, initItem, conditionItem);
+        CreateConnector(connectors, conditionItem, printItem);
+        CreateConnector(connectors, conditionItem, endItem, "Yes", segment1, segment2);
+        CreateConnector(connectors, printItem, incrementItem, "No");
+        CreateConnector(connectors, incrementItem, conditionItem, null!, segment3, segment4);
+
+        return (nodes, connectors);
     }
 
     // Method to create connector.
     private void CreateConnector(
+        List<Connector> connectors,
         Item start, 
         Item end, string label = default!, 
         OrthogonalSegment segment1 = null!, 
@@ -73,7 +79,7 @@ public partial class Editor
         var diagramConnector = new Connector
         {
             // Represents the unique id of the connector.
-            ID = $"connector{++_connectorCount}",
+            ID = $"connector{connectors.Count}",
             SourceID = start.Id.ToString(),
             TargetID = end.Id.ToString(),
         };
@@ -93,7 +99,7 @@ public partial class Editor
             diagramConnector.Type = ConnectorSegmentType.Orthogonal;
             diagramConnector.Segments = [segment1, segment2];
         }
-        _connectors.Add(diagramConnector);
+        connectors.Add(diagramConnector);
     }
     
 }

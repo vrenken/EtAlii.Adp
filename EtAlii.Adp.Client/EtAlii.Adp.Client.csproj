@@ -1,51 +1,54 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
-  <PropertyGroup>
+<PropertyGroup>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
     <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
-  </PropertyGroup>
+</PropertyGroup>
 
-  <ItemGroup>
+<ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all"/>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" />
+    <PackageReference Include="ReactiveUI.Blazor" />
     <PackageReference Include="Syncfusion.Blazor.Diagram" />
     <PackageReference Include="Syncfusion.Blazor.Navigations" />
     <PackageReference Include="Syncfusion.Blazor.Themes" />
-  </ItemGroup>
+</ItemGroup>
 
-  <ItemGroup>
+<ItemGroup>
     <Compile Update="Pages\Editor.TestData.razor.cs">
-      <DependentUpon>Editor.razor</DependentUpon>
+        <DependentUpon>Editor.razor</DependentUpon>
     </Compile>
-    <Compile Update="Views\Pages\Editor.TestData.razor.cs">
-      <DependentUpon>Editor.razor</DependentUpon>
+    <Compile Update="ViewModel\EditPageViewModel.TestData.razor.cs">
+        <DependentUpon>EditPageViewModel.cs</DependentUpon>
     </Compile>
-  </ItemGroup>
+</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Functional\Dependencies\" />
-    <Folder Include="Functional\Editor\" />
-    <Folder Include="Functional\Nodes\" />
-    <Folder Include="Functional\PanZoom\" />
-    <Folder Include="Model\" />
-    <Folder Include="ViewModel\_Model\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="Views\Controls\BottomToolbar.razor" />
-    <AdditionalFiles Include="Views\Controls\LeftToolbar.razor" />
-    <AdditionalFiles Include="Views\Controls\RightToolbar.razor" />
-    <AdditionalFiles Include="Views\Controls\TopToolbar.razor" />
-    <AdditionalFiles Include="Views\Pages\Auth.razor" />
-    <AdditionalFiles Include="Views\Pages\Counter.razor" />
-    <AdditionalFiles Include="Views\Pages\Editor.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
+<ItemGroup>
     <_ContentIncludedByDefault Remove="Controls\BottomToolbar.razor" />
     <_ContentIncludedByDefault Remove="Controls\LeftToolbar.razor" />
     <_ContentIncludedByDefault Remove="Controls\RightToolbar.razor" />
     <_ContentIncludedByDefault Remove="Controls\TopToolbar.razor" />
-  </ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Counter.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Home.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Weather.razor" />
+    <_ContentIncludedByDefault Remove="Views\wwwroot\appsettings.Development.json" />
+    <_ContentIncludedByDefault Remove="Views\wwwroot\appsettings.json" />
+</ItemGroup>
+
+<ItemGroup>
+  <Folder Include="Functional\Dependencies\" />
+  <Folder Include="Functional\Editor\" />
+  <Folder Include="Functional\Nodes\" />
+  <Folder Include="Functional\PanZoom\" />
+  <Folder Include="ViewModel\_Model\" />
+</ItemGroup>
+
+<ItemGroup>
+  <AdditionalFiles Include="Views\Layout\MainLayout.razor" />
+  <AdditionalFiles Include="Views\Layout\NavMenu.razor" />
+  <AdditionalFiles Include="Views\Pages\Edit.razor" />
+  <AdditionalFiles Include="Views\Pages\RedirectToLogin.razor" />
+</ItemGroup>
 
 </Project>

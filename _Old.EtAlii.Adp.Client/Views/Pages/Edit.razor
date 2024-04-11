@@ -1,0 +1,79 @@
+﻿@page "/"
+@namespace EtAlii.Adp.Client
+@rendermode InteractiveAuto
+@using Syncfusion.Blazor.Diagram
+@inherits  ReactiveComponentBase<EditPageViewModel>
+
+<TopToolbar />
+<RightToolbar Diagram="@_diagram" />
+<LeftToolbar />
+<BottomToolbar />
+
+<SfDiagramComponent
+    @ref="@_diagram"
+    Connectors="@_connectors"
+    Nodes="@_nodes"
+    Height="100%"
+    Width="100%"
+    Click="OnClicked"
+    InteractionController="DiagramInteractions.ZoomPan">
+    <ScrollSettings
+        EnableAutoScroll="true"
+        ScrollLimit="ScrollLimitMode.Infinity"/>
+    @* CurrentZoomChanged="@ZoomChanged" *@
+    <SnapSettings Constraints="SnapConstraints.All">
+        <HorizontalGridLines LineColor="#EFEFEFC5"/>
+        <VerticalGridLines LineColor="#EFEFEFC5"/>
+    </SnapSettings>
+</SfDiagramComponent>
+
+<style> 
+    html, body { 
+       height:100%; 
+    } 
+    
+    :root {
+        --adp-panel-min-spacing : 20px;
+        --adp-panel-max-spacing: 80px;
+        --adp-panel-top-bottom-margin: 5px;
+        --adp-panel-corner-radius: 10px;
+    }
+     
+
+
+
+    *.e-btn-group:not(.e-rtl):not(.e-vertical) .e-btn:first-of-type, *.e-css.e-btn-group:not(.e-rtl):not(.e-vertical) .e-btn:first-of-type {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-width: 2px;
+        border-right-width: 0;
+    }
+    
+    *.e-btn-group:not(.e-rtl):not(.e-vertical) .e-btn:not(:first-of-type):not(:last-of-type), *.e-css.e-btn-group:not(.e-rtl):not(.e-vertical) .e-btn:not(:first-of-type):not(:last-of-type) {
+        border-radius: 0;
+        border-width: 2px;
+        border-left-width: 0;
+        border-right-width: 0;
+    }
+    
+    *.e-btn-group:not(.e-rtl):not(.e-vertical) .e-btn:last-of-type, *.e-css.e-btn-group:not(.e-rtl):not(.e-vertical) .e-btn:last-of-type {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-width: 2px;
+        border-left-width: 0;
+    }
+
+
+    
+    .e-toolbar .tb-item-selected .e-tbar-btn {
+        background-color: darkslategray;
+    }
+    .e-toolbar .tb-item-selected .e-tbar-btn .e-btn-icon {
+        color: white;
+    }
+
+</style> 
