@@ -2,7 +2,7 @@
 
 namespace EtAlii.Adp.Service;
 
-public partial class DbContext : Microsoft.EntityFrameworkCore.DbContext
+public partial class DbContext
 {
-    public DbSet<View> Views { get; set; }
+    public DbSet<Graph> Graphs { get; set; }
 }

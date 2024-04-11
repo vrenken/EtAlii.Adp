@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Adp.Service;
 
-public class View
+public class Graph
 {
     public Guid Id { get; init; }
     
