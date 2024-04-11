@@ -8,6 +8,23 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+      <Content Update="appsettings.Development.json">
+        <DependentUpon>appsettings.json</DependentUpon>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="HotChocolate.AspNetCore" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Activities\Api\" />
+      <Folder Include="Activities\_Model\" />
+      <Folder Include="Dependencies\Api\" />
+      <Folder Include="Dependencies\_Model\" />
+      <Folder Include="Items\Api\" />
+      <Folder Include="Items\_Model\" />
     </ItemGroup>
 
 </Project>
