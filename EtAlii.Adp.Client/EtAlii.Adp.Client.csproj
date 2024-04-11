@@ -10,6 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all"/>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" />
     <PackageReference Include="ReactiveUI.Blazor" />
+    <PackageReference Include="StrawberryShake.Server" />
+    <PackageReference Include="StrawberryShake.Transport.Http" />
+    <PackageReference Include="StrawberryShake.Transport.WebSockets" />
     <PackageReference Include="Syncfusion.Blazor.Diagram" />
     <PackageReference Include="Syncfusion.Blazor.Navigations" />
     <PackageReference Include="Syncfusion.Blazor.Themes" />
