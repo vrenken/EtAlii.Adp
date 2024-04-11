@@ -6,7 +6,7 @@ using Syncfusion.Blazor.Diagram;
 
 namespace EtAlii.Adp.Client;
 
-public partial class Edit
+public partial class EditPage
 {
     private SfDiagramComponent _diagram = null!;
 

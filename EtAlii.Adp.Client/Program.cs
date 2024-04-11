@@ -10,8 +10,11 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-builder.Services.AddSyncfusionBlazor();
-builder.Services.AddSingleton<EditPageViewModel>();
+builder.Services
+    .AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) })
+    .AddSyncfusionBlazor()
+    .AddSingleton<EditPageViewModel>();
 
-await builder.Build().RunAsync();
+await builder
+    .Build()
+    .RunAsync();

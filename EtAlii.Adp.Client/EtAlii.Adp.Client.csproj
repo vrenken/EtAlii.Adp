@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
-<PropertyGroup>
-    <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
-    <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
-</PropertyGroup>
+<!--<PropertyGroup>-->
+<!--    <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>-->
+<!--    <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>-->
+<!--</PropertyGroup>-->
 
 <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
@@ -19,9 +19,6 @@
     <Compile Update="Pages\Editor.TestData.razor.cs">
         <DependentUpon>Editor.razor</DependentUpon>
     </Compile>
-    <Compile Update="ViewModel\EditPageViewModel.TestData.razor.cs">
-        <DependentUpon>EditPageViewModel.cs</DependentUpon>
-    </Compile>
 </ItemGroup>
 
 <ItemGroup>
@@ -34,21 +31,35 @@
     <_ContentIncludedByDefault Remove="Pages\Weather.razor" />
     <_ContentIncludedByDefault Remove="Views\wwwroot\appsettings.Development.json" />
     <_ContentIncludedByDefault Remove="Views\wwwroot\appsettings.json" />
+    <_ContentIncludedByDefault Remove="Views\Controls\BottomToolbar.razor" />
+    <_ContentIncludedByDefault Remove="Views\Controls\LeftToolbar.razor" />
+    <_ContentIncludedByDefault Remove="Views\Controls\RightToolbar.razor" />
+    <_ContentIncludedByDefault Remove="Views\Controls\TopToolbar.razor" />
+    <_ContentIncludedByDefault Remove="Views\Layout\MainLayout.razor" />
+    <_ContentIncludedByDefault Remove="Views\Layout\NavMenu.razor" />
 </ItemGroup>
 
 <ItemGroup>
-  <Folder Include="Functional\Dependencies\" />
-  <Folder Include="Functional\Editor\" />
-  <Folder Include="Functional\Nodes\" />
-  <Folder Include="Functional\PanZoom\" />
-  <Folder Include="ViewModel\_Model\" />
+  <Folder Include="PanZoom\" />
+  <Folder Include="_Shared\" />
 </ItemGroup>
 
 <ItemGroup>
-  <AdditionalFiles Include="Views\Layout\MainLayout.razor" />
-  <AdditionalFiles Include="Views\Layout\NavMenu.razor" />
-  <AdditionalFiles Include="Views\Pages\Edit.razor" />
-  <AdditionalFiles Include="Views\Pages\RedirectToLogin.razor" />
+  <AdditionalFiles Include="Editor\Controls\BottomToolbar.razor" />
+  <AdditionalFiles Include="Editor\Controls\LeftToolbar.razor" />
+  <AdditionalFiles Include="Editor\Controls\RightToolbar.razor" />
+  <AdditionalFiles Include="Editor\Controls\TopToolbar.razor" />
+</ItemGroup>
+
+<ItemGroup>
+  <None Include="wwwroot\bootstrap\bootstrap.min.css" />
+  <None Include="wwwroot\bootstrap\bootstrap.min.css.map" />
+  <None Include="wwwroot\css\app.css" />
+  <None Include="wwwroot\css\bootstrap\bootstrap.min.css" />
+  <None Include="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+  <None Include="wwwroot\favicon.png" />
+  <None Include="wwwroot\icon-192.png" />
+  <None Include="wwwroot\index.html" />
 </ItemGroup>
 
 </Project>
