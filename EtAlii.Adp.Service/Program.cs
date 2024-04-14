@@ -50,5 +50,9 @@ app
     .MapGraphQL("/api")
     .WithOptions(new GraphQLServerOptions { Tool = { Enable = Debugger.IsAttached } }); // or app.Environment.IsDevelopment()
 
+// Let's setup the database.
+using var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope();
+var context = serviceScope.ServiceProvider.GetRequiredService<DbContext>();
+context.Database.EnsureCreated();
 
 app.Run();
