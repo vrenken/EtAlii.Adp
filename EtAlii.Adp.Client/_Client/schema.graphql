@@ -6,51 +6,87 @@ schema {
 
 type Query {
   graphs: Graphs!
+  items: ItemsQuery!
+  relations: RelationsQuery!
 }
 
 type Mutation {
   addGraph(input: AddGraphInput!): AddGraphPayload!
+  changeGraph(input: ChangeGraphInput!): ChangeGraphPayload!
+  removeGraph(input: RemoveGraphInput!): RemoveGraphPayload!
+  addItem(input: AddItemInput!): AddItemPayload!
+  changeItem(input: ChangeItemInput!): ChangeItemPayload!
+  removeItem(input: RemoveItemInput!): RemoveItemPayload!
+  addRelation(input: AddRelationInput!): AddRelationPayload!
+  changeRelation(input: ChangeRelationInput!): ChangeRelationPayload!
+  removeRelation(input: RemoveRelationInput!): RemoveRelationPayload!
 }
 
 type Subscription {
   graphAdded: Graph!
   graphChanged: Graph!
   graphRemoved: Graph!
-}
-
-input GraphInput {
-  id: UUID!
-  x: Float!
-  y: Float!
-  z: Float!
+  itemAdded: Item!
+  itemChanged: Item!
+  itemRemoved: Item!
+  relationAdded: Relation!
+  relationChanged: Relation!
+  relationRemoved: Relation!
 }
 
 type Graph {
-  id: UUID!
+  id: ID!
+  name: String!
   x: Float!
   y: Float!
   z: Float!
+  items: [Item!]!
+  relations: [Relation!]!
+}
+
+type RelationsQuery {
+  relation: Relation!
+  all("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: RelationFilterInput order: [RelationSortInput!]): AllConnection
+}
+
+type ItemsQuery {
+  item: Item!
+  all("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: ItemFilterInput order: [ItemSortInput!]): AllConnection
 }
 
 type Graphs {
   graph: Graph!
-  all("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: GraphFilterInput order: [GraphSortInput!]): AllConnection
+  all(where: GraphFilterInput order: [GraphSortInput!]): [Graph!]!
 }
 
-input GraphFilterInput {
-  and: [GraphFilterInput!]
-  or: [GraphFilterInput!]
-  id: UuidOperationFilterInput
-  x: FloatOperationFilterInput
-  y: FloatOperationFilterInput
-  z: FloatOperationFilterInput
+scalar UUID
+
+type Item {
+  id: ID!
+  name: String!
 }
 
-input GraphSortInput {
+type Relation {
+  id: ID!
+  name: String!
+  source: Item!
+  target: Item!
+}
+
+input RelationFilterInput {
+  and: [RelationFilterInput!]
+  or: [RelationFilterInput!]
+  id: IdOperationFilterInput
+  name: StringOperationFilterInput
+  source: ItemFilterInput
+  target: ItemFilterInput
+}
+
+input RelationSortInput {
   id: SortEnumType
-  x: SortEnumType
-  y: SortEnumType
-  z: SortEnumType
+  name: SortEnumType
+  source: ItemSortInput
+  target: ItemSortInput
 }
 
 "A connection to a list of items."
@@ -60,37 +96,61 @@ type AllConnection {
   "A list of edges."
   edges: [AllEdge!]
   "A flattened list of the nodes."
-  nodes: [Graph!]
+  nodes: [Relation!]
 }
 
-input UuidOperationFilterInput {
-  eq: UUID
-  neq: UUID
-  in: [UUID]
-  nin: [UUID]
-  gt: UUID
-  ngt: UUID
-  gte: UUID
-  ngte: UUID
-  lt: UUID
-  nlt: UUID
-  lte: UUID
-  nlte: UUID
+input ItemFilterInput {
+  and: [ItemFilterInput!]
+  or: [ItemFilterInput!]
+  id: IdOperationFilterInput
+  name: StringOperationFilterInput
 }
 
-input FloatOperationFilterInput {
-  eq: Float
-  neq: Float
-  in: [Float]
-  nin: [Float]
-  gt: Float
-  ngt: Float
-  gte: Float
-  ngte: Float
-  lt: Float
-  nlt: Float
-  lte: Float
-  nlte: Float
+input ItemSortInput {
+  id: SortEnumType
+  name: SortEnumType
+}
+
+input GraphFilterInput {
+  and: [GraphFilterInput!]
+  or: [GraphFilterInput!]
+  id: IdOperationFilterInput
+  name: StringOperationFilterInput
+  x: FloatOperationFilterInput
+  y: FloatOperationFilterInput
+  z: FloatOperationFilterInput
+  items: ListFilterInputTypeOfItemFilterInput
+  relations: ListFilterInputTypeOfRelationFilterInput
+}
+
+input GraphSortInput {
+  id: SortEnumType
+  name: SortEnumType
+  x: SortEnumType
+  y: SortEnumType
+  z: SortEnumType
+}
+
+input IdOperationFilterInput {
+  eq: ID
+  neq: ID
+  in: [ID]
+  nin: [ID]
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
 }
 
 enum SortEnumType {
@@ -115,15 +175,110 @@ type AllEdge {
   "A cursor for use in pagination."
   cursor: String!
   "The item at the end of the edge."
-  node: Graph!
+  node: Relation!
 }
 
-scalar UUID
+input FloatOperationFilterInput {
+  eq: Float
+  neq: Float
+  in: [Float]
+  nin: [Float]
+  gt: Float
+  ngt: Float
+  gte: Float
+  ngte: Float
+  lt: Float
+  nlt: Float
+  lte: Float
+  nlte: Float
+}
+
+input ListFilterInputTypeOfItemFilterInput {
+  all: ItemFilterInput
+  none: ItemFilterInput
+  some: ItemFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfRelationFilterInput {
+  all: RelationFilterInput
+  none: RelationFilterInput
+  some: RelationFilterInput
+  any: Boolean
+}
 
 input AddGraphInput {
-  graph: GraphInput!
+  name: String!
 }
 
 type AddGraphPayload {
   graph: Graph
+}
+
+input ChangeGraphInput {
+  id: UUID!
+  name: String!
+}
+
+type ChangeGraphPayload {
+  graph: Graph
+}
+
+input RemoveGraphInput {
+  id: UUID!
+}
+
+type RemoveGraphPayload {
+  graph: Graph
+}
+
+input AddItemInput {
+  graphId: ID!
+  name: String!
+}
+
+type AddItemPayload {
+  item: Item
+}
+
+input ChangeItemInput {
+  id: UUID!
+  name: String!
+}
+
+type ChangeItemPayload {
+  item: Item
+}
+
+input RemoveItemInput {
+  id: UUID!
+}
+
+type RemoveItemPayload {
+  item: Item
+}
+
+input AddRelationInput {
+  name: String!
+}
+
+type AddRelationPayload {
+  relation: Relation
+}
+
+input ChangeRelationInput {
+  id: UUID!
+  name: String!
+}
+
+type ChangeRelationPayload {
+  relation: Relation
+}
+
+input RemoveRelationInput {
+  id: UUID!
+}
+
+type RemoveRelationPayload {
+  relation: Relation
 }

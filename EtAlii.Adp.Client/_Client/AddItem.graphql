@@ -1,0 +1,16 @@
+mutation AddItem(
+    $graphId: ID!
+    $name: String!)
+{
+    addItem(input: 
+    {
+        graphId: $graphId
+        name: $name
+    })
+    {
+        item {
+            id
+            name
+        }
+    }
+}

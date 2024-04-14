@@ -1,0 +1,13 @@
+mutation AddGraph($name: String!)
+{
+    addGraph(input: 
+    {
+        name: $name
+    })
+    {
+        graph {
+            id
+            name
+        }
+    }
+}

@@ -1,0 +1,13 @@
+mutation AddRelation($name: String!)
+{
+    addRelation(input: 
+    {
+        name: $name
+    })
+    {
+        relation {
+            id
+            name
+        }
+    }
+}
