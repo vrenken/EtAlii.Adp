@@ -3,23 +3,23 @@
 // ReSharper disable once ClassNeverInstantiated.Global
 public partial class Query 
 {
-    public Graphs Graphs => new();
+    public ItemsQuery Items => new();
 }
 
-public class Graphs 
+public class ItemsQuery 
 {
-    public Task<Graph> GetGraph()
+    public Task<Item> GetItem()
     {
-        var result = new Graph { Id = Guid.NewGuid() };
+        var result = new Item { Id = Guid.NewGuid() };
         return Task.FromResult(result);
     }
-
+    
     [UsePaging]
     [UseProjection]
     [UseFiltering]
     [UseSorting]
-    public IQueryable<Graph> All([Service] DbContext context)
+    public IQueryable<Item> All([Service] DbContext context)
     {
-        return context.Graphs;
+        return context.Items;
     }
 }

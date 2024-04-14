@@ -10,10 +10,22 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+var servicePort = 7276;
+var baseAddressBuilder = new UriBuilder(builder.HostEnvironment.BaseAddress);
+//var clientBaseAddress = baseAddressBuilder.Uri;
+baseAddressBuilder.Path = "/api";
+baseAddressBuilder.Port = servicePort;
+var serviceHttpBaseAddress = baseAddressBuilder.Uri;
+baseAddressBuilder.Scheme = "wss";
+var webSocketHttpBaseAddress = baseAddressBuilder.Uri;
+
 builder.Services
-    .AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) })
+    //.AddScoped(_ => new HttpClient { BaseAddress = clientBaseAddress})
     .AddSyncfusionBlazor()
-    .AddSingleton<EditPageViewModel>();
+    .AddSingleton<EditPageViewModel>()
+    .AddAdpClient()
+    .ConfigureHttpClient(config => config.BaseAddress = serviceHttpBaseAddress)
+    .ConfigureWebSocketClient(config => config.Uri = webSocketHttpBaseAddress);
 
 await builder
     .Build()
