@@ -1,11 +1,15 @@
 mutation AddItem(
     $graphId: ID!
-    $name: String!)
+    $name: String!
+    $xPosition: Float!
+    $yPosition: Float!)
 {
     addItem(input: 
     {
         graphId: $graphId
         name: $name
+        xPosition: $xPosition
+        yPosition: $yPosition
     })
     {
         item {
