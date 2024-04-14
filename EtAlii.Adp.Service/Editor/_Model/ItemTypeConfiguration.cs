@@ -7,6 +7,13 @@ public class ItemTypeConfiguration : IEntityTypeConfiguration<Item>
 {
     public void Configure(EntityTypeBuilder<Item> builder)
     {
-        //builder.Property(t => t.Name);
+        builder.ToTable("Items");
+
+        builder.HasKey(t => t.Id);
+        builder.HasIndex(t => t.Id);
+
+        builder.Property(t => t.Name).IsRequired();
+        
+        builder.HasIndex(t => t.Name);
     }
 }
