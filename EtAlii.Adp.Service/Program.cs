@@ -12,7 +12,8 @@ Directory.CreateDirectory(specialFolder);
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddDbContext<DbContext>(options => options.UseSqlite($"Data Source='{databaseFile}'"));
+    .AddDbContext<DbContext>(options => options.UseSqlite($"Data Source='{databaseFile}'"))
+    .AddCors();
 
 var apiBuilder = builder.Services
     .AddGraphQLServer()
@@ -36,6 +37,12 @@ if(Debugger.IsAttached) // or builder.Environment.IsDevelopment()
 
 
 var app = builder.Build();
+
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(_ => true) // allow any origin  
+    .AllowCredentials());               // allow credentials 
 
 app.MapGet("/", () => "Hello World!");
 
