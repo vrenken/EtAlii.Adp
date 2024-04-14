@@ -31,8 +31,15 @@ public partial class EditPage
                     viewModel => viewModel.Connectors,
                     view => view._connectors)
                 .DisposeWith(disposableRegistration);
+
+            this.BindCommand(ViewModel,
+                viewModel => viewModel.AddItem,
+                view => view._diagram.Click)
+                .DisposeWith(disposableRegistration);
         });
 
+        await ViewModel.Load.Execute().ToTask();
+        
         await ViewModel.LoadNodes.Execute().ToTask();
         await ViewModel.LoadConnectors.Execute().ToTask();
 
