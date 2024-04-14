@@ -23,11 +23,11 @@ public static class NodeFactory
             //Represents the unique id of the node.
             ID = item.Id.ToString(),
             // Defines the position of the node.
-            OffsetX = item.Position.X,
-            OffsetY = item.Position.Y,
+            OffsetX = item.X,
+            OffsetY = item.Y,
             // Defines the size of the node.
-            Width = item.Size.X,
-            Height = item.Size.Y,
+            Width = item.W,
+            Height = item.H,
             // Defines the style of the node.
             Style = new ShapeStyle { Fill = "#357BD2", StrokeColor = "White" },
             // Defines the shape of the node.
@@ -45,7 +45,7 @@ public static class NodeFactory
             [
                 new ShapeAnnotation
                 {
-                    Content = item.Label,
+                    Content = item.Name,
                     Style = new TextStyle
                     {
                         Color = "White",
