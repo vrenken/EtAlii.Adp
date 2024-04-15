@@ -25,24 +25,6 @@
 </ItemGroup>
 
 <ItemGroup>
-    <_ContentIncludedByDefault Remove="Controls\BottomToolbar.razor" />
-    <_ContentIncludedByDefault Remove="Controls\LeftToolbar.razor" />
-    <_ContentIncludedByDefault Remove="Controls\RightToolbar.razor" />
-    <_ContentIncludedByDefault Remove="Controls\TopToolbar.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Counter.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Home.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Weather.razor" />
-    <_ContentIncludedByDefault Remove="Views\wwwroot\appsettings.Development.json" />
-    <_ContentIncludedByDefault Remove="Views\wwwroot\appsettings.json" />
-    <_ContentIncludedByDefault Remove="Views\Controls\BottomToolbar.razor" />
-    <_ContentIncludedByDefault Remove="Views\Controls\LeftToolbar.razor" />
-    <_ContentIncludedByDefault Remove="Views\Controls\RightToolbar.razor" />
-    <_ContentIncludedByDefault Remove="Views\Controls\TopToolbar.razor" />
-    <_ContentIncludedByDefault Remove="Views\Layout\MainLayout.razor" />
-    <_ContentIncludedByDefault Remove="Views\Layout\NavMenu.razor" />
-</ItemGroup>
-
-<ItemGroup>
   <Folder Include="PanZoom\" />
   <Folder Include="_Shared\" />
 </ItemGroup>
