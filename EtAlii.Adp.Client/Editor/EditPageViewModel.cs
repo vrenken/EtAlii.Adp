@@ -14,13 +14,10 @@ public partial class EditPageViewModel : ReactiveObject
     private readonly ObservableAsPropertyHelper<Node[]> _nodes;
 
 
-    public Graph Graph => _graph.Value;
-    private readonly ObservableAsPropertyHelper<Graph> _graph;
-
+    public Graph Graph => _graph;
+    private Graph _graph = null!;
     public ReactiveCommand<ClickEventArgs, Item> AddItem { get; }
-
-    public ReactiveCommand<Unit, Graph> Load { get; }
-
+    
     public ReactiveCommand<Unit, Node[]> LoadNodes { get; }
     private readonly IReadOnlyList<Node> _loadedNodes;
     public Connector[] Connectors => _connectors.Value;
@@ -36,20 +33,28 @@ public partial class EditPageViewModel : ReactiveObject
     public EditPageViewModel(IAdpClient adpClient, ILogger<EditPageViewModel> logger)
     {
         _adpClient = adpClient;
+        _adpClient.ItemAdded
+            .Watch()
+            .Select(response => response.Data!.ItemAdded.ToLocal())
+            .Subscribe(OnItemAdded);
+        
         _logger = logger;
         (_loadedNodes, _loadedConnectors) = InitDiagramModel();
-
-        Load = ReactiveCommand.CreateFromTask(LoadAsync);
-        _graph = Load.ToProperty(this, x => x.Graph, scheduler: RxApp.MainThreadScheduler);
-
+        
         AddItem = ReactiveCommand.CreateFromTask<ClickEventArgs, Item>(AddItemAsync);
+        
         LoadNodes = ReactiveCommand.CreateFromTask(LoadNodesAsync);
-        _nodes = LoadNodes.ToProperty(this, x => x.Nodes, scheduler: RxApp.MainThreadScheduler);
+        _nodes = LoadNodes.ToProperty(this, x => x.Nodes);
         
         LoadConnectors = ReactiveCommand.CreateFromTask(LoadConnectorsAsync);
-        _connectors = LoadConnectors.ToProperty(this, x => x.Connectors, scheduler: RxApp.MainThreadScheduler);
+        _connectors = LoadConnectors.ToProperty(this, x => x.Connectors);
     }
-    
+
+    private void OnItemAdded(Item item)
+    {
+        
+    }
+
     private Task<Node[]> LoadNodesAsync()
     {
         return Task.FromResult(_loadedNodes.ToArray());
@@ -74,12 +79,12 @@ public partial class EditPageViewModel : ReactiveObject
     }
     
 
-    private async Task<Graph> LoadAsync()
+    public async Task Initialize()
     {
         try
         {
             var result = await _adpClient.AddGraph.ExecuteAsync("Test graph");
-            return result.Data!.AddGraph.Graph!.ToLocal();
+            _graph = result.Data!.AddGraph.Graph!.ToLocal();
         }
         catch (Exception exception)
         {

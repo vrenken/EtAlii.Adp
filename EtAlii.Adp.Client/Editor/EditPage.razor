@@ -3,19 +3,13 @@
 @rendermode InteractiveAuto
 @inherits  ReactiveComponentBase<EditPageViewModel>
 
-<TopToolbar />
-<RightToolbar Diagram="@_diagram" />
-<LeftToolbar />
-<BottomToolbar />
-
 <SfDiagramComponent
     @ref="@_diagram"
     Connectors="@_connectors"
     Nodes="@_nodes"
-    Height="100%"
-    Width="100%"
-    Click="OnClicked"
-    InteractionController="DiagramInteractions.ZoomPan">
+    InteractionController="DiagramInteractions.ZoomPan"
+    Click="e => ViewModel.AddItem.Execute(e).ToTask()">
+    @* Click="OnClicked" *@
     <ScrollSettings
         EnableAutoScroll="true"
         ScrollLimit="ScrollLimitMode.Infinity"/>
@@ -25,6 +19,11 @@
         <VerticalGridLines LineColor="#EFEFEFC5"/>
     </SnapSettings>
 </SfDiagramComponent>
+
+<TopToolbar />
+<RightToolbar Diagram="@_diagram" />
+<LeftToolbar />
+<BottomToolbar />
 
 <style> 
     html, body { 
