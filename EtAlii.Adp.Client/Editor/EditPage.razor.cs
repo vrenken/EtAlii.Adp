@@ -1,10 +1,4 @@
-﻿using System.Reactive.Disposables;
-using System.Reactive.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
-using ReactiveUI;
-using Syncfusion.Blazor.Diagram;
-
-namespace EtAlii.Adp.Client;
+﻿namespace EtAlii.Adp.Client;
 
 public partial class EditPage
 {
