@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Adp.Service", "EtAli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Adp.Service.Tests", "EtAlii.Adp.Service.Tests\EtAlii.Adp.Service.Tests.csproj", "{71A473C4-6FF4-4711-B377-9A9D05AF7FFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Adp", "EtAlii.Adp\EtAlii.Adp.csproj", "{8F34E974-730F-4767-A434-C1CABC72DB69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,18 @@ Global
 		{71A473C4-6FF4-4711-B377-9A9D05AF7FFF}.Release|x64.Build.0 = Release|Any CPU
 		{71A473C4-6FF4-4711-B377-9A9D05AF7FFF}.Release|x86.ActiveCfg = Release|Any CPU
 		{71A473C4-6FF4-4711-B377-9A9D05AF7FFF}.Release|x86.Build.0 = Release|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Debug|x64.Build.0 = Debug|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Debug|x86.Build.0 = Debug|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Release|x64.ActiveCfg = Release|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Release|x64.Build.0 = Release|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Release|x86.ActiveCfg = Release|Any CPU
+		{8F34E974-730F-4767-A434-C1CABC72DB69}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
