@@ -64,6 +64,10 @@ scalar UUID
 type Item {
   id: ID!
   name: String!
+  x: Float!
+  y: Float!
+  w: Float!
+  h: Float!
 }
 
 type Relation {
@@ -104,11 +108,19 @@ input ItemFilterInput {
   or: [ItemFilterInput!]
   id: IdOperationFilterInput
   name: StringOperationFilterInput
+  x: FloatOperationFilterInput
+  y: FloatOperationFilterInput
+  w: FloatOperationFilterInput
+  h: FloatOperationFilterInput
 }
 
 input ItemSortInput {
   id: SortEnumType
   name: SortEnumType
+  x: SortEnumType
+  y: SortEnumType
+  w: SortEnumType
+  h: SortEnumType
 }
 
 input GraphFilterInput {
@@ -234,6 +246,8 @@ type RemoveGraphPayload {
 
 input AddItemInput {
   graphId: ID!
+  xPosition: Float!
+  yPosition: Float!
   name: String!
 }
 
