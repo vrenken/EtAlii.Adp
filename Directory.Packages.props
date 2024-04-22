@@ -16,9 +16,9 @@
     <PackageVersion Include="StrawberryShake.Server" Version="13.9.0" />
     <PackageVersion Include="StrawberryShake.Transport.Http" Version="13.9.0" />
     <PackageVersion Include="StrawberryShake.Transport.WebSockets" Version="13.9.0" />
-    <PackageVersion Include="Syncfusion.Blazor.Diagram" Version="25.1.39" />
-    <PackageVersion Include="Syncfusion.Blazor.Navigations" Version="25.1.39" />
-    <PackageVersion Include="Syncfusion.Blazor.Themes" Version="25.1.39" />
+    <PackageVersion Include="Syncfusion.Blazor.Diagram" Version="25.1.40" />
+    <PackageVersion Include="Syncfusion.Blazor.Navigations" Version="25.1.40" />
+    <PackageVersion Include="Syncfusion.Blazor.Themes" Version="25.1.40" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.4" />
     <PackageVersion Include="Snapshooter.Xunit" Version="0.14.1" />
