@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all"/>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" />
     <PackageReference Include="ReactiveUI.Blazor" />
+    <PackageReference Include="Seq.Extensions.Logging" />
     <PackageReference Include="StrawberryShake.Server" />
     <PackageReference Include="StrawberryShake.Transport.Http" />
     <PackageReference Include="StrawberryShake.Transport.WebSockets" />
@@ -45,6 +46,23 @@
   <None Include="wwwroot\favicon.png" />
   <None Include="wwwroot\icon-192.png" />
   <None Include="wwwroot\index.html" />
+</ItemGroup>
+
+<ItemGroup>
+  <Content Update="appsettings.Development.json">
+    <DependentUpon>appsettings.json</DependentUpon>
+  </Content>
+  <Content Update="wwwroot\appsettings.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  <Content Update="wwwroot\appsettings.Development.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <DependentUpon>appsettings.json</DependentUpon>
+  </Content>
+</ItemGroup>
+
+<ItemGroup>
+  <ProjectReference Include="..\EtAlii.Adp\EtAlii.Adp.csproj" />
 </ItemGroup>
 
 </Project>

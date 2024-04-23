@@ -11,5 +11,4 @@ public partial class Subscription
     
     [Subscribe]
     public Item ItemRemoved([EventMessage] Item item) => item;
-
 }

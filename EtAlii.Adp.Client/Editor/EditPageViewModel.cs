@@ -25,7 +25,8 @@ public partial class EditPageViewModel : ReactiveObject
     public ReactiveCommand<Unit, Connector[]> LoadConnectors { get; }
 
     private readonly IReadOnlyList<Connector> _loadedConnectors;
-    
+    private readonly IDisposable _itemAddedSubscription;
+
     public Vector2 ViewCenter { get; set; }
     public float Zoom { get; set; }
     public Vector2 ViewPort { get; set; }
@@ -33,7 +34,7 @@ public partial class EditPageViewModel : ReactiveObject
     public EditPageViewModel(IAdpClient adpClient, ILogger<EditPageViewModel> logger)
     {
         _adpClient = adpClient;
-        _adpClient.ItemAdded
+        _itemAddedSubscription = _adpClient.ItemAdded
             .Watch()
             .Select(response => response.Data!.ItemAdded.ToLocal())
             .Subscribe(OnItemAdded);
@@ -52,7 +53,7 @@ public partial class EditPageViewModel : ReactiveObject
 
     private void OnItemAdded(Item item)
     {
-        
+        _logger.LogInformation("Item added: {ItemName}", item.Name);
     }
 
     private Task<Node[]> LoadNodesAsync()

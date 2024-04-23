@@ -12,6 +12,8 @@ public partial class EditPage
 
     [Inject] public new EditPageViewModel ViewModel { get => base.ViewModel!; set => base.ViewModel = value; }
 
+    [Inject] public ILogger<EditPage> Logger { get; set; }
+
     public EditPage()
     {
         this.WhenActivated(disposableRegistration =>
@@ -55,7 +57,7 @@ public partial class EditPage
     {
         if (firstRender)
         {
-            
+            Logger.LogInformation("First render of EditPage");
             var startItem = new Item { Id = Guid.NewGuid(), X = 300, Y = 50, W = 145, H = 60, Name = "Start" };
             var node = NodeFactory.Create(startItem);
             _nodes.Add(node);
@@ -65,6 +67,7 @@ public partial class EditPage
 
     private async Task OnClicked(ClickEventArgs e)
     {
+        Logger.LogInformation("OnClicked");
         await ViewModel.AddItem.Execute(e).ToTask();
         // if (_addActionButton.IsToggled)
         // {
