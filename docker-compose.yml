@@ -4,3 +4,15 @@
     build:
       context: .
       dockerfile: EtAlii.Adp.Service/Dockerfile
+
+  blazorapp2:
+    image: blazorapp2
+    build:
+      context: .
+      dockerfile: BlazorApp2/BlazorApp2/Dockerfile
+
+  blazorapp2.client:
+    image: blazorapp2.client
+    build:
+      context: .
+      dockerfile: BlazorApp2/BlazorApp2.Client/Dockerfile
