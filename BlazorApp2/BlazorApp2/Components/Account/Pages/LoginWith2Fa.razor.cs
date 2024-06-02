@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp2.Components.Account.Pages;
 
-public partial class LoginWith2fa
+public partial class LoginWith2Fa
 {
     private string? _message;
     private ApplicationUser _user = default!;

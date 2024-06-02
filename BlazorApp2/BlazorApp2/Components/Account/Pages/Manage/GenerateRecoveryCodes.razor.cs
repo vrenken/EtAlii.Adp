@@ -5,16 +5,16 @@ namespace BlazorApp2.Components.Account.Pages.Manage;
 
 public partial class GenerateRecoveryCodes
 {
-    private string? message;
-    private ApplicationUser user = default!;
-    private IEnumerable<string>? recoveryCodes;
+    private string? _message;
+    private ApplicationUser _user = default!;
+    private IEnumerable<string>? _recoveryCodes;
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
     {
-        user = await UserAccessor.GetRequiredUserAsync(HttpContext);
+        _user = await UserAccessor.GetRequiredUserAsync(HttpContext);
 
-        var isTwoFactorEnabled = await UserManager.GetTwoFactorEnabledAsync(user);
+        var isTwoFactorEnabled = await UserManager.GetTwoFactorEnabledAsync(_user);
         if (!isTwoFactorEnabled)
         {
             throw new InvalidOperationException(
@@ -24,9 +24,9 @@ public partial class GenerateRecoveryCodes
 
     private async Task OnSubmitAsync()
     {
-        var userId = await UserManager.GetUserIdAsync(user);
-        recoveryCodes = await UserManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
-        message = "You have generated new recovery codes.";
+        var userId = await UserManager.GetUserIdAsync(_user);
+        _recoveryCodes = await UserManager.GenerateNewTwoFactorRecoveryCodesAsync(_user, 10);
+        _message = "You have generated new recovery codes.";
 
         Logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes", userId);
     }

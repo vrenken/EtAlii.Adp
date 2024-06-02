@@ -6,16 +6,16 @@ namespace BlazorApp2.Components.Account.Pages.Manage;
 
 public partial class SetPassword
 {
-    private string? message;
-    private ApplicationUser user = default!;
+    private string? _message;
+    private ApplicationUser _user = default!;
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
-        user = await UserAccessor.GetRequiredUserAsync(HttpContext);
+        _user = await UserAccessor.GetRequiredUserAsync(HttpContext);
 
-        var hasPassword = await UserManager.HasPasswordAsync(user);
+        var hasPassword = await UserManager.HasPasswordAsync(_user);
         if (hasPassword)
         {
             RedirectManager.RedirectTo("Account/Manage/ChangePassword");
@@ -24,14 +24,14 @@ public partial class SetPassword
 
     private async Task OnValidSubmitAsync()
     {
-        var addPasswordResult = await UserManager.AddPasswordAsync(user, Input.NewPassword!);
+        var addPasswordResult = await UserManager.AddPasswordAsync(_user, Input.NewPassword!);
         if (!addPasswordResult.Succeeded)
         {
-            message = $"Error: {string.Join(",", addPasswordResult.Errors.Select(error => error.Description))}";
+            _message = $"Error: {string.Join(",", addPasswordResult.Errors.Select(error => error.Description))}";
             return;
         }
 
-        await SignInManager.RefreshSignInAsync(user);
+        await SignInManager.RefreshSignInAsync(_user);
         RedirectManager.RedirectToCurrentPageWithStatus("Your password has been set.", HttpContext);
     }
 

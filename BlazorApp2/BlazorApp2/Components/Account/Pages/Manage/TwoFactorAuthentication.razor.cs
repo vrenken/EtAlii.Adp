@@ -5,21 +5,21 @@ namespace BlazorApp2.Components.Account.Pages.Manage;
 
 public partial class TwoFactorAuthentication
 {
-    private bool canTrack;
-    private bool hasAuthenticator;
-    private int recoveryCodesLeft;
-    private bool is2faEnabled;
-    private bool isMachineRemembered;
+    private bool _canTrack;
+    private bool _hasAuthenticator;
+    private int _recoveryCodesLeft;
+    private bool _is2FaEnabled;
+    private bool _isMachineRemembered;
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
     {
         var user = await UserAccessor.GetRequiredUserAsync(HttpContext);
-        canTrack = HttpContext.Features.Get<ITrackingConsentFeature>()?.CanTrack ?? true;
-        hasAuthenticator = await UserManager.GetAuthenticatorKeyAsync(user) is not null;
-        is2faEnabled = await UserManager.GetTwoFactorEnabledAsync(user);
-        isMachineRemembered = await SignInManager.IsTwoFactorClientRememberedAsync(user);
-        recoveryCodesLeft = await UserManager.CountRecoveryCodesAsync(user);
+        _canTrack = HttpContext.Features.Get<ITrackingConsentFeature>()?.CanTrack ?? true;
+        _hasAuthenticator = await UserManager.GetAuthenticatorKeyAsync(user) is not null;
+        _is2FaEnabled = await UserManager.GetTwoFactorEnabledAsync(user);
+        _isMachineRemembered = await SignInManager.IsTwoFactorClientRememberedAsync(user);
+        _recoveryCodesLeft = await UserManager.CountRecoveryCodesAsync(user);
     }
 
     private async Task OnSubmitForgetBrowserAsync()
