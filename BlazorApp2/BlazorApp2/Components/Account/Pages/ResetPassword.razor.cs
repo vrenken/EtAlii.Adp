@@ -10,6 +10,8 @@ public partial class ResetPassword
 {
     private IEnumerable<IdentityError>? _identityErrors;
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
+    
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? Code { get; set; }
 
     private string? Message => _identityErrors is null

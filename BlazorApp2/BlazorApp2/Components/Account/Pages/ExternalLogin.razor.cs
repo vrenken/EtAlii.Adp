@@ -16,8 +16,14 @@ public partial class ExternalLogin
     private ExternalLoginInfo _externalLoginInfo = default!;
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
+    
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? RemoteError { get; set; }
+    
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
+    
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? Action { get; set; }
     private string? ProviderDisplayName => _externalLoginInfo.ProviderDisplayName;
 

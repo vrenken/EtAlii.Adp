@@ -9,6 +9,8 @@ public partial class LoginWithRecoveryCode
     private string? _message;
     private ApplicationUser _user = default!;
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
+    
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
     protected override async Task OnInitializedAsync()

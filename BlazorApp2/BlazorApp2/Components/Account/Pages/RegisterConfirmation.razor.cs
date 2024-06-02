@@ -9,7 +9,11 @@ public partial class RegisterConfirmation
     private string? _emailConfirmationLink;
     private string? _statusMessage;
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
+    
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? Email { get; set; }
+    
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
     protected override async Task OnInitializedAsync()

@@ -13,6 +13,8 @@ public partial class Register
 {
     private IEnumerable<IdentityError>? _identityErrors;
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
+    
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
     private string? Message => _identityErrors is null
