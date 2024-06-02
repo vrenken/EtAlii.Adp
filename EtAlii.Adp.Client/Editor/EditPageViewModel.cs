@@ -25,6 +25,7 @@ public partial class EditPageViewModel : ReactiveObject
     public ReactiveCommand<Unit, Connector[]> LoadConnectors { get; }
 
     private readonly IReadOnlyList<Connector> _loadedConnectors;
+    // ReSharper disable once NotAccessedField.Local
     private readonly IDisposable _itemAddedSubscription;
 
     public Vector2 ViewCenter { get; set; }

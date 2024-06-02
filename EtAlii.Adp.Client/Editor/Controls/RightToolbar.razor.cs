@@ -98,7 +98,9 @@ public partial class RightToolbar
         _centerButton.IsToggled = false;
         _fitToPageButton.IsToggled = false;
         _pointerButton.IsToggled = false;
+#pragma warning disable BL0005
         Diagram.InteractionController = DiagramInteractions.ZoomPan;
+#pragma warning restore BL0005
         _viewButton.IsEnabled = true;
         _centerButton.IsEnabled = true;
         _resetButton.IsEnabled = true;
@@ -181,7 +183,9 @@ public partial class RightToolbar
     }
     private void OnPointerClick()
     {
+#pragma warning disable BL0005
         Diagram.InteractionController = DiagramInteractions.SingleSelect | DiagramInteractions.MultipleSelect;
+#pragma warning restore BL0005
         _panButton.IsToggled = false;
         _zoomButtonIn.IsToggled = false;
         _zoomButtonOut.IsToggled = false;

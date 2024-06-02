@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
-using BlazorApp2.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;

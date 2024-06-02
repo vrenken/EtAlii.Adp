@@ -108,6 +108,11 @@
       <AdditionalFiles Include="Account\_Shared\ManageNavMenu.razor" />
       <AdditionalFiles Include="Account\_Shared\ShowRecoveryCodes.razor" />
       <AdditionalFiles Include="Account\_Shared\StatusMessage.razor" />
+      <AdditionalFiles Include="Errors\Pages\Error.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Errors\" />
     </ItemGroup>
 
 </Project>

@@ -1,4 +1,3 @@
-using BlazorApp2.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace BlazorApp2;

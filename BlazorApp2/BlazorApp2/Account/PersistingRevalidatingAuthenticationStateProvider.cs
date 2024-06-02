@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using BlazorApp2.Client;
-using BlazorApp2.Data;
 
 namespace BlazorApp2;
 

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using BlazorApp2.Data;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp2;

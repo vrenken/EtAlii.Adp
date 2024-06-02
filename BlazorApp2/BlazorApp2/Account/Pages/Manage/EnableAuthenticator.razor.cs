@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Text;
-using BlazorApp2.Data;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp2;
