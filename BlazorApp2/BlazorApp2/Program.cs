@@ -1,8 +1,8 @@
+using BlazorApp2;
+using BlazorApp2.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using BlazorApp2.Components;
-using BlazorApp2.Components.Account;
 using BlazorApp2.Data;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,0 +1,15 @@
+﻿@inherits LayoutComponentBase
+@layout Client.Layout.MainLayout
+
+@namespace BlazorApp2
+
+@inject NavigationManager NavigationManager
+
+@if (HttpContext is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    @Body
+}
