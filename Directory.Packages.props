@@ -2,14 +2,19 @@
   <ItemGroup>
     <PackageVersion Include="HotChocolate.AspNetCore" Version="13.9.5" />
     <PackageVersion Include="HotChocolate.Data.EntityFramework" Version="13.9.5" />
-    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.4" />
+
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.Facebook" Version="8.0.6" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.6" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="8.0.6" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.Twitter" Version="8.0.6" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.6"/>
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.6" />
-    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.1" />
-    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.6"/>
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6"/>
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.6" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6"/>
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.6" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.6" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
@@ -28,5 +33,6 @@
     <PackageVersion Include="xunit" Version="2.8.1" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.1" />
     <PackageVersion Include="coverlet.collector" Version="6.0.2" />
+    
   </ItemGroup>
 </Project>
