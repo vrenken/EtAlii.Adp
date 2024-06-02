@@ -8,15 +8,15 @@ namespace BlazorApp2.Components.Account.Pages;
 
 public partial class ResendEmailConfirmation
 {
-    private string? message;
+    private string? _message;
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
 
     private async Task OnValidSubmitAsync()
     {
-        var user = await UserManager.FindByEmailAsync(Input.Email!);
+        var user = await UserManager.FindByEmailAsync(Input.Email);
         if (user is null)
         {
-            message = "Verification email sent. Please check your email.";
+            _message = "Verification email sent. Please check your email.";
             return;
         }
 
@@ -28,7 +28,7 @@ public partial class ResendEmailConfirmation
             new Dictionary<string, object?> { ["userId"] = userId, ["code"] = code });
         await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
 
-        message = "Verification email sent. Please check your email.";
+        _message = "Verification email sent. Please check your email.";
     }
 
     private sealed class InputModel

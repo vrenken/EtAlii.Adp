@@ -5,11 +5,11 @@ namespace BlazorApp2.Components.Account.Shared;
 
 public partial class ExternalLoginPicker
 {
-    private AuthenticationScheme[] externalLogins = [];
+    private AuthenticationScheme[] _externalLogins = [];
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        externalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToArray();
+        _externalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToArray();
     }
 }

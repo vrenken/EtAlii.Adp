@@ -1,6 +1,4 @@
 ﻿@page "/Account/LoginWith2fa"
-
-@using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Identity
 @using BlazorApp2.Data
 
@@ -13,7 +11,7 @@
 
 <h1>Two-factor authentication</h1>
 <hr/>
-<StatusMessage Message="@message"/>
+<StatusMessage Message="@_message"/>
 <p>Your login is protected with an authenticator app. Enter your authenticator code below.</p>
 <div class="row">
     <div class="col-md-4">

@@ -12,14 +12,14 @@ namespace BlazorApp2.Components.Account.Pages;
 public partial class ExternalLogin
 {
     public const string LoginCallbackAction = "LoginCallback";
-    private string? message;
-    private ExternalLoginInfo externalLoginInfo = default!;
+    private string? _message;
+    private ExternalLoginInfo _externalLoginInfo = default!;
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
     [SupplyParameterFromQuery] private string? RemoteError { get; set; }
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
     [SupplyParameterFromQuery] private string? Action { get; set; }
-    private string? ProviderDisplayName => externalLoginInfo.ProviderDisplayName;
+    private string? ProviderDisplayName => _externalLoginInfo.ProviderDisplayName;
 
     protected override async Task OnInitializedAsync()
     {
@@ -36,7 +36,7 @@ public partial class ExternalLogin
                 HttpContext);
         }
 
-        externalLoginInfo = info;
+        _externalLoginInfo = info;
 
         if (HttpMethods.IsGet(HttpContext.Request.Method))
         {
@@ -56,17 +56,17 @@ public partial class ExternalLogin
     {
         // Sign in the user with this external login provider if the user already has a login.
         var result = await SignInManager.ExternalLoginSignInAsync(
-            externalLoginInfo.LoginProvider,
-            externalLoginInfo.ProviderKey,
+            _externalLoginInfo.LoginProvider,
+            _externalLoginInfo.ProviderKey,
             isPersistent: false,
             bypassTwoFactor: true);
 
         if (result.Succeeded)
         {
             Logger.LogInformation(
-                "{Name} logged in with {LoginProvider} provider.",
-                externalLoginInfo.Principal.Identity?.Name,
-                externalLoginInfo.LoginProvider);
+                "{Name} logged in with {LoginProvider} provider",
+                _externalLoginInfo.Principal.Identity?.Name,
+                _externalLoginInfo.LoginProvider);
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.IsLockedOut)
@@ -75,9 +75,9 @@ public partial class ExternalLogin
         }
 
         // If the user does not have an account, then ask the user to create an account.
-        if (externalLoginInfo.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+        if (_externalLoginInfo.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
         {
-            Input.Email = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Email) ?? "";
+            Input.Email = _externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Email) ?? "";
         }
     }
 
@@ -92,11 +92,11 @@ public partial class ExternalLogin
         var result = await UserManager.CreateAsync(user);
         if (result.Succeeded)
         {
-            result = await UserManager.AddLoginAsync(user, externalLoginInfo);
+            result = await UserManager.AddLoginAsync(user, _externalLoginInfo);
             if (result.Succeeded)
             {
-                Logger.LogInformation("User created an account using {Name} provider.",
-                    externalLoginInfo.LoginProvider);
+                Logger.LogInformation("User created an account using {Name} provider",
+                    _externalLoginInfo.LoginProvider);
 
                 var userId = await UserManager.GetUserIdAsync(user);
                 var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
@@ -113,12 +113,12 @@ public partial class ExternalLogin
                     RedirectManager.RedirectTo("Account/RegisterConfirmation", new() { ["email"] = Input.Email });
                 }
 
-                await SignInManager.SignInAsync(user, isPersistent: false, externalLoginInfo.LoginProvider);
+                await SignInManager.SignInAsync(user, isPersistent: false, _externalLoginInfo.LoginProvider);
                 RedirectManager.RedirectTo(ReturnUrl);
             }
         }
 
-        message = $"Error: {string.Join(",", result.Errors.Select(error => error.Description))}";
+        _message = $"Error: {string.Join(",", result.Errors.Select(error => error.Description))}";
     }
 
     private ApplicationUser CreateUser()

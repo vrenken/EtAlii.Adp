@@ -8,13 +8,13 @@ namespace BlazorApp2.Components.Account.Pages;
 
 public partial class ResetPassword
 {
-    private IEnumerable<IdentityError>? identityErrors;
+    private IEnumerable<IdentityError>? _identityErrors;
     [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
     [SupplyParameterFromQuery] private string? Code { get; set; }
 
-    private string? Message => identityErrors is null
+    private string? Message => _identityErrors is null
         ? null
-        : $"Error: {string.Join(", ", identityErrors.Select(error => error.Description))}";
+        : $"Error: {string.Join(", ", _identityErrors.Select(error => error.Description))}";
 
     protected override void OnInitialized()
     {
@@ -41,7 +41,7 @@ public partial class ResetPassword
             RedirectManager.RedirectTo("Account/ResetPasswordConfirmation");
         }
 
-        identityErrors = result.Errors;
+        _identityErrors = result.Errors;
     }
 
     private sealed class InputModel
