@@ -1,5 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
+    <PropertyGroup>
+        <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+        <WasmEnableThreads>true</WasmEnableThreads>
+        <WasmEnableSIMD>true</WasmEnableSIMD>
+        <RunAOTCompilation>true</RunAOTCompilation>
+        <WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
+        <WasmNativeStrip>false</WasmNativeStrip>
+    </PropertyGroup>
 <!--<PropertyGroup>-->
 <!--    <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>-->
 <!--    <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>-->
@@ -63,6 +71,12 @@
 
 <ItemGroup>
   <ProjectReference Include="..\EtAlii.Adp\EtAlii.Adp.csproj" />
+</ItemGroup>
+
+<ItemGroup>
+  <GraphQL Update="_Client\GetUsers.graphql">
+    <Generator>MSBuild:GenerateGraphQLCode</Generator>
+  </GraphQL>
 </ItemGroup>
 
 </Project>

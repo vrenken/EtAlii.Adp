@@ -37,7 +37,7 @@ public partial class EditPageViewModel : ReactiveObject
         _itemAddedSubscription = _adpClient.ItemAdded
             .Watch()
             .Select(response => response.Data!.ItemAdded.ToLocal())
-            .Subscribe(OnItemAdded);
+            .Subscribe(OnItemAdded, OnItemAddedError);
         
         _logger = logger;
         (_loadedNodes, _loadedConnectors) = InitDiagramModel();
@@ -49,6 +49,11 @@ public partial class EditPageViewModel : ReactiveObject
         
         LoadConnectors = ReactiveCommand.CreateFromTask(LoadConnectorsAsync);
         _connectors = LoadConnectors.ToProperty(this, x => x.Connectors);
+    }
+
+    private void OnItemAddedError(Exception e)
+    {
+        _logger.LogError(e, "Error while handing {SubscriptionName}", nameof(_adpClient.ItemAdded));
     }
 
     private void OnItemAdded(Item item)
@@ -69,7 +74,11 @@ public partial class EditPageViewModel : ReactiveObject
     {
         try
         {
-            var result = await _adpClient.AddItem.ExecuteAsync(Graph.Id.ToString(), "New item", (float)e.Position.X, (float)e.Position.Y);
+            var graphId = Graph.Id.ToString();
+            var x = (float)e.Position.X;
+            var y = (float)e.Position.Y;
+            _logger.LogInformation("Adding item to {GraphId} at: {ItemPositionX}x{ItemPositionY}", graphId, x, y);
+            var result = await _adpClient.AddItem.ExecuteAsync(graphId, "New item", x, y);
             return result.Data!.AddItem.Item!.ToLocal();
         }
         catch (Exception exception)
@@ -84,6 +93,8 @@ public partial class EditPageViewModel : ReactiveObject
     {
         try
         {
+            _logger.LogInformation("Initializing {ViewModelName}", nameof(EditPageViewModel));
+
             var result = await _adpClient.AddGraph.ExecuteAsync("Test graph");
             _graph = result.Data!.AddGraph.Graph!.ToLocal();
         }

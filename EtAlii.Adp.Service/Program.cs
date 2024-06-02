@@ -64,6 +64,8 @@ app.UseCors(x => x
     .SetIsOriginAllowed(_ => true) // allow any origin  
     .AllowCredentials());               // allow credentials 
 
+app.UseHttpsRedirection();
+
 app.MapGet("/", () => "ADP is running");
 
 // var webSocketOptions = new WebSocketOptions();

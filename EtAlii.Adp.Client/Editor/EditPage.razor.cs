@@ -12,11 +12,11 @@ public partial class EditPage
 
     [Inject] public new EditPageViewModel ViewModel { get => base.ViewModel!; set => base.ViewModel = value; }
 
-    [Inject] public ILogger<EditPage> Logger { get; set; }
+    [Inject] public ILogger<EditPage> Logger { get; set; } = null!;
 
     public EditPage()
     {
-        this.WhenActivated(disposableRegistration =>
+        this.WhenActivated(_ =>
         {
             // this.OneWayBind(ViewModel,
             //         viewModel => viewModel.Nodes,

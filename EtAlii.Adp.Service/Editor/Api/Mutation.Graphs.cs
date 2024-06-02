@@ -6,11 +6,20 @@ namespace EtAlii.Adp.Service;
 // ReSharper disable once ClassNeverInstantiated.Global
 public partial class Mutation 
 {
+    private readonly ILogger<Mutation> _logger;
+
+    public Mutation(ILogger<Mutation> logger)
+    {
+        _logger = logger;
+    }
+    
     public async Task<Graph> AddGraph(
         [Service] DbContext dbContext, 
         [Service] ITopicEventSender sender,
         string name)
     {
+        _logger.LogInformation("GraphQL {MutationName} mutation called", nameof(AddGraph));
+        
         var graph = new Graph { Name = name };
         await dbContext.Graphs.AddAsync(graph);
 
@@ -39,6 +48,8 @@ public partial class Mutation
         [Service] ITopicEventSender sender,
         Guid id, string name)
     {
+        _logger.LogInformation("GraphQL {MutationName} mutation called", nameof(ChangeGraph));
+
         var graph = await dbContext.Graphs.SingleAsync(g => g.Id == id);
         graph.Name = name;
         dbContext.Graphs.Update(graph);
@@ -55,6 +66,8 @@ public partial class Mutation
         [Service] ITopicEventSender sender,
         Guid id)
     {
+        _logger.LogInformation("GraphQL {MutationName} mutation called", nameof(RemoveGraph));
+
         var graph = await dbContext.Graphs.SingleAsync(g => g.Id == id);
         dbContext.Graphs.Remove(graph);
 

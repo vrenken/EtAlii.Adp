@@ -4,8 +4,10 @@ public partial class LeftToolbar
 {
     private readonly ToolbarButton _addActionButton;
     private readonly ToolbarButton _addArtifactButton;
+    // ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
     private readonly ToolbarButton _groupItemsButton;
     private readonly ToolbarButton _ungroupItemsButton;
+    // ReSharper restore PrivateFieldCanBeConvertedToLocalVariable
 
     private readonly ToolbarButton[] _leftToolbar;
 

@@ -1,0 +1,23 @@
+query GetUsers($id: ID!)
+{
+    graphs 
+    {
+        all(where: { id: { eq: $id } })
+        {
+            id
+            name
+            items 
+            {
+                id
+                name
+            }
+            relations 
+            {
+                id
+                name
+                source { id }
+                target { id }
+            }
+        }
+    }
+}

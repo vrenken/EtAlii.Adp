@@ -39,7 +39,7 @@ builder.Services
     .AddScoped(_ => new HttpClient { BaseAddress = clientBaseAddress})
     .AddSyncfusionBlazor()
     .AddSingleton<EditPageViewModel>()
-    .AddAdpClient(profile: AdpClientProfileKind.WebSocket)
+    .AddAdpClient(profile: AdpClientProfileKind.Http)
     .ConfigureHttpClient(client => client.BaseAddress = serviceHttpBaseAddress)
     .ConfigureWebSocketClient(client => client.Uri = webSocketHttpBaseAddress);
     

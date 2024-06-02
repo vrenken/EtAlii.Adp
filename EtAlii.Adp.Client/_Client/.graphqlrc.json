@@ -6,13 +6,22 @@
       "name": "AdpClient",
       "url": "https://localhost:7276/api",
       "namespace": "EtAlii.Adp.Client",
+      "dependencyInjection": true,
       "records": {
         "inputs": false,
         "entities": false
       },
       "transportProfiles": [
         {
+          "name": "Http",
           "default": "Http",
+          "mutation": "Http",
+          "subscription": "Http"
+        },
+        {
+          "name": "WebSocket",
+          "default": "WebSocket",
+          "mutation": "WebSocket",
           "subscription": "WebSocket"
         }
       ]

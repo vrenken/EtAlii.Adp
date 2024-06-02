@@ -8,8 +8,10 @@
     Connectors="@_connectors"
     Nodes="@_nodes"
     InteractionController="DiagramInteractions.ZoomPan"
-    Click="e => ViewModel.AddItem.Execute(e).ToTask()">
-    @* Click="OnClicked" *@
+    Click="OnClicked">
+        @*  
+Click="e => ViewModel.AddItem.Execute(e).ToTask()"
+*@
     <ScrollSettings
         EnableAutoScroll="true"
         ScrollLimit="ScrollLimitMode.Infinity"/>

@@ -14,6 +14,8 @@ public partial class Mutation
         float yPosition,
         string name)
     {
+        _logger.LogInformation("GraphQL {MutationName} mutation called", nameof(AddItem));
+
         var item = new Item
         {
             Name = name,
@@ -38,6 +40,8 @@ public partial class Mutation
         [Service] ITopicEventSender sender,
         Guid id, string name)
     {
+        _logger.LogInformation("GraphQL {MutationName} mutation called", nameof(ChangeItem));
+
         var item = await dbContext.Items.SingleAsync(g => g.Id == id);
         item.Name = name;
         dbContext.Items.Update(item);
@@ -54,6 +58,8 @@ public partial class Mutation
         [Service] ITopicEventSender sender,
         Guid id)
     {
+        _logger.LogInformation("GraphQL {MutationName} mutation called", nameof(RemoveItem));
+
         var item = await dbContext.Items.SingleAsync(g => g.Id == id);
         dbContext.Items.Remove(item);
 
